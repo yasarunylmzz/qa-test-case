@@ -5,7 +5,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -15,125 +17,101 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.sql.DriverManager;
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
+
+import pages.SearchPage;
+import utilities.BrowserUtils;
+import utilities.ConfigurationReader;
+import utilities.DriverManager;
 
 public class Case1Steps {
-    WebDriver driver = BaseTest.getDriver();
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    WebDriver driver = DriverManager.getDriver();
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(45));
     Actions actions = new Actions(driver);
+    SearchPage searchPage = new SearchPage();
 
+    @Before
     @Given("I am on the Enuygun homepage")
-    public void iAmOnTheEnuygunHomepage() {
-        WebDriverManager.chromedriver().setup();
+    public void setUp() {
+        String browser = ConfigurationReader.getProperty("browser");
+        System.setProperty("browser", browser);
 
+        String url = ConfigurationReader.getProperty("url");
         driver.manage().window().maximize();
-        driver.get("https://www.enuygun.com");
+        driver.get(url);
 
     }
+
 
     @When("I search for a round-trip flight from {string} to {string}")
     public void iSearchForARoundTripFlightFromToCity(String fromCity, String toCity) {
 
-        WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//label[@data-testid='search-round-trip-label']")));
-        radioButton.click();
 
-        WebElement fromCityInput = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@data-testid='endesign-flight-origin-autosuggestion-input']")));
+        BrowserUtils.waitForClickability(driver,By.xpath("//label[@data-testid='search-round-trip-label']"),10)
+                .click();
+
+        WebElement fromCityInput = BrowserUtils.waitForClickability(driver,By.xpath("//input[@data-testid='endesign-flight-origin-autosuggestion-input']"),10);
         fromCityInput.clear();
         fromCityInput.sendKeys(fromCity);
         fromCityInput.sendKeys(Keys.ENTER);
 
-        WebElement toCitys = driver.findElement(By.xpath("//input[@data-testid='endesign-flight-destination-autosuggestion-input']"));
+        WebElement toCitys = BrowserUtils.findElement(driver,By.xpath("//input[@data-testid='endesign-flight-destination-autosuggestion-input']"),10);
         toCitys.clear();
         toCitys.sendKeys(toCity);
 
-        WebElement toCityIsCorrect = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//div[@data-testid='autosuggestion-custom-item-ankara-esenboga-havalimani']")));
+        BrowserUtils.waitForClickability(driver, By.xpath("//li[@data-testid='endesign-flight-destination-autosuggestion-option-item-0']"),10);
+
         toCitys.sendKeys(Keys.ENTER);
+
+
 
     }
 
     @And("I select departure date as {string} and return date as {string}")
     public void iSelectDepartureDateAsReturnDateAs(String departureDate, String returnDate) {
-        WebElement depertureDateInputButton = driver.findElement(By.xpath("//div[@data-testid='enuygun-homepage-flight-departureDate-datepicker-popover-button']"));
+
+        WebElement depertureDateInputButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@data-testid='enuygun-homepage-flight-departureDate-datepicker-popover-button']")));
         depertureDateInputButton.click();
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@data-testid='datepicker-active-day']")));
 
-        List<WebElement> dateElements = driver.findElements(By.xpath("//button[@data-testid='datepicker-active-day']"));
-        String testIdValue = dateElements.get(0).getAttribute("title");
+        searchPage.moveToTargetMonth(departureDate, "departureDate");
 
-        String[] parts = testIdValue.split("-");
-        String yearNow = parts[0];
-        String monthNow = parts[1];
-
-        String[] date = departureDate.split("-");
-        String year = date[0];
-        String month = date[1];
-
-        int yearNowInt = Integer.parseInt(yearNow);
-        int monthNowInt = Integer.parseInt(monthNow);
-        int yearInt = Integer.parseInt(year);
-        int monthInt = Integer.parseInt(month);
-
-        while(yearInt > yearNowInt || (yearInt == yearNowInt && monthInt > monthNowInt)) {
-            WebElement rightClick = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//button[@data-testid='enuygun-homepage-flight-departureDate-month-forward-button']"))));
-            rightClick.click();
-
-            List<WebElement> nowDates = driver.findElements(By.xpath("//div[@data-testid='enuygun-homepage-flight-departureDate-datepicker-calendar-month']"));
-            String testIdValues = nowDates.get(0).getAttribute("id");
-            String[] parts2 = testIdValues.split("-");
-            yearNow = parts2[2];
-            monthNow = parts2[3];
-
-            yearNowInt = Integer.parseInt(yearNow);
-            monthNowInt = Integer.parseInt(monthNow);
-        }
-
-        WebElement datePicker = driver.findElement(By.xpath("//button[@title='" + departureDate + "']"));
+        WebElement datePicker = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@title='" + departureDate + "']")));
         datePicker.click();
 
         WebElement returnButton = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//input[@data-testid='enuygun-homepage-flight-returnDate-datepicker-input']"))));
         returnButton.click();
 
 
-        List<WebElement> returnDateElements = driver.findElements(By.xpath("//button[@data-testid='datepicker-active-day']"));
-        String returnTestIdValue = returnDateElements.get(0).getAttribute("title");
-
-        String[] returnParts = returnTestIdValue.split("-");
-        String returnYearNow = returnParts[0];
-        String returnMonthNow = returnParts[1];
-
-        String[] returnDates = returnDate.split("-");
-        String returnYear = returnDates[0];
-        String returnMonth = returnDates[1];
-
-        int returnYearNowInt = Integer.parseInt(returnYearNow);
-        int returnMonthNowInt = Integer.parseInt(returnMonthNow);
-        int returnYearInt = Integer.parseInt(returnYear);
-        int returnMonthInt = Integer.parseInt(returnMonth);
-
-        while (returnYearInt > returnYearNowInt || (returnYearInt == returnYearNowInt && returnMonthInt > returnMonthNowInt)){
-            WebElement rightClick = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//button[@data-testid='enuygun-homepage-flight-returnDate-month-forward-button']"))));
-            rightClick.click();
-
-            List<WebElement> nowDates = driver.findElements(By.xpath("//div[@data-testid='enuygun-homepage-flight-returnDate-datepicker-calendar-month']"));
-            String testIdValues = nowDates.get(0).getAttribute("id");
-            String[] parts2 = testIdValues.split("-");
-            returnYearNow = parts2[2];
-            returnMonthNow = parts2[3];
-
-            returnYearNowInt = Integer.parseInt(returnYearNow);
-            returnMonthNowInt = Integer.parseInt(returnMonthNow);
-        }
-
-
+        searchPage.moveToTargetMonth(returnDate, "returnDate");
 
         WebElement returnPicker = driver.findElement(By.xpath("//button[@title='" + returnDate + "']"));
         returnPicker.click();
 
-        WebElement searchButton = driver.findElement(By.xpath("//button[@data-testid='enuygun-homepage-flight-submitButton']"));
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        List<WebElement> checkBoxInputs = driver.findElements(By.xpath("//input[@data-testid='flight-oneWayCheckbox-input']"));
+
+        System.out.println("checkBoxInputs: " + checkBoxInputs.get(1).getText());
+        if (!checkBoxInputs.isEmpty()) {
+            WebElement checkBoxInput = checkBoxInputs.get(1);
+            boolean isSelected = checkBoxInput.isSelected();
+            System.out.println("isSelected: " + isSelected);
+
+            if (isSelected) {
+                List<WebElement> label = driver.findElements(By.xpath("//label[@data-testid='flight-oneWayCheckbox-label']"));
+                label.get(1).click();
+            }
+        }
+
+        WebElement searchButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@data-testid='enuygun-homepage-flight-submitButton']")));
         searchButton.click();
 
     }
@@ -202,8 +180,12 @@ public class Case1Steps {
             System.out.println("Element DOM'da var ama görünür değil");
             Assert.fail("Element DOM'da var ama görünür değil");
         }
-        BaseTest.quitDriver();
 
+    }
+
+    @After
+    public void tearDown() {
+        DriverManager.quitDriver();
     }
 
 

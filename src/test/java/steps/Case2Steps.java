@@ -2,23 +2,31 @@ package steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.sql.DriverManager;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import utilities.DriverManager;
+
 public class Case2Steps {
-    WebDriver driver = BaseTest.getDriver();
+    WebDriver driver = DriverManager.getDriver();
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
+
+    @Before
+    public void setUp() {
+        driver.manage().window().maximize();
+    }
 
     @And("I filter flights by Turkish Airlines only")
     public void filterFlightsByTurkishAirlinesOnly() {
@@ -74,7 +82,12 @@ public class Case2Steps {
         Collections.sort(sortedPrices);
 
         Assert.assertEquals(prices, sortedPrices);
-        BaseTest.quitDriver();
+
+    }
+
+    @After
+    public void tearDown() {
+        driver.quit();
     }
 
 }

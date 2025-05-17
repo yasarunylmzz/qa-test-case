@@ -4,7 +4,7 @@ Feature: Flight search with Turkish Airlines filter and price sorting
     Given I am on the Enuygun homepage
     When I search for a round-trip flight from "<fromCity>" to "<toCity>"
     And I select departure date as "<departureDate>" and return date as "<returnDate>"
-    And I apply a departure time filter between <departureTime> and <returnTime>
+    And I apply a departure time filter between "<departureTime>" and "<returnTime>"
     And I filter flights by Turkish Airlines only
     Then all displayed flights should be Turkish Airlines flights
     And the flight prices should be sorted in ascending order
