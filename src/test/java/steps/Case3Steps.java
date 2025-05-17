@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.Before;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,22 +31,45 @@ public class Case3Steps {
 
     @And("I navigate to the Hotel search section")
     public void iNavigateToTheHotelSearchSection() {
-        // TODO: Click on the Hotel tab or navigate to hotel search
+        WebElement hotelButton = driver.findElement(By.xpath("//a[@data-testid='header-nav-links-1']"));
+        hotelButton.click();
+
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertTrue(currentUrl.contains("https://www.enuygun.com/otel/"));
     }
 
     @When("I type {string} in the Location field")
     public void iTypeInTheLocationField(String location) {
-        // TODO: Enter the location into the input field
+        WebElement locationField = driver.findElement(By.xpath("//input[@data-testid='endesign-hotel-autosuggestion-input']"));
+        locationField.sendKeys(location);
     }
 
     @And("I select check-in date {string} and check-out date {string}")
     public void iSelectCheckInDateAndCheckOutDate(String checkin, String checkout) {
-        // TODO: Select check-in and check-out dates from the calendar
+
     }
 
-    @And("I set the guests to {string}")
-    public void iSetTheGuestsTo(String guests) {
-        // TODO: Set the number of guests (adults/children)
+    @And("I set the guests to {string} and {string}")
+    public void iSetTheGuestsTo(String adult, String child) {
+        WebElement guestButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@data-testid='hotel']")));
+        guestButton.click();
+
+        int adultInt =  Integer.parseInt(adult);
+        int childInt = Integer.parseInt(child);
+
+        WebElement adultNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@data-testid='hotel-adult-counter-count']")));
+        int currentAdult = Integer.parseInt(adultNumber.getText());
+        WebElement plusButtonAdult = driver.findElement(By.xpath("//button[@data-testid='hotel-adult-counter-plus-button']"));
+        WebElement minusButtonAdult = driver.findElement(By.xpath("//button[@data-testid='hotel-adult-counter-minus-button']"));
+        while (adultInt > currentAdult){
+            plusButtonAdult.click();
+            currentAdult++;
+        }
+
+        while (adultInt < currentAdult) {
+            minusButtonAdult.click();
+            currentAdult--;
+        }
     }
 
     @And("I click the {string} button")
