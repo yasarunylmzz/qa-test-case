@@ -15,11 +15,12 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.DriverManager;
 import java.time.Duration;
 import java.util.List;
 
 public class Case1Steps {
-    WebDriver driver = new ChromeDriver();
+    WebDriver driver = BaseTest.getDriver();
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     Actions actions = new Actions(driver);
 
@@ -93,7 +94,7 @@ public class Case1Steps {
         WebElement datePicker = driver.findElement(By.xpath("//button[@title='" + departureDate + "']"));
         datePicker.click();
 
-        WebElement returnButton = driver.findElement(By.xpath("//input[@data-testid='enuygun-homepage-flight-returnDate-datepicker-input']"));
+        WebElement returnButton = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//input[@data-testid='enuygun-homepage-flight-returnDate-datepicker-input']"))));
         returnButton.click();
 
 
@@ -201,8 +202,9 @@ public class Case1Steps {
             System.out.println("Element DOM'da var ama görünür değil");
             Assert.fail("Element DOM'da var ama görünür değil");
         }
-    }
+        BaseTest.quitDriver();
 
+    }
 
 
 }
