@@ -2,6 +2,7 @@ package steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
@@ -37,7 +38,7 @@ public class Case1Steps {
         WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//label[@data-testid='search-round-trip-label']")));
         radioButton.click();
 
-        WebElement fromCityInput = driver.findElement(By.xpath("//input[@data-testid='endesign-flight-origin-autosuggestion-input']"));
+        WebElement fromCityInput = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@data-testid='endesign-flight-origin-autosuggestion-input']")));
         fromCityInput.clear();
         fromCityInput.sendKeys(fromCity);
         fromCityInput.sendKeys(Keys.ENTER);
@@ -59,7 +60,6 @@ public class Case1Steps {
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@data-testid='datepicker-active-day']")));
 
-
         List<WebElement> dateElements = driver.findElements(By.xpath("//button[@data-testid='datepicker-active-day']"));
         String testIdValue = dateElements.get(0).getAttribute("title");
 
@@ -77,7 +77,7 @@ public class Case1Steps {
         int monthInt = Integer.parseInt(month);
 
         while(yearInt > yearNowInt || (yearInt == yearNowInt && monthInt > monthNowInt)) {
-            WebElement rightClick = driver.findElement(By.xpath("//button[@data-testid='enuygun-homepage-flight-departureDate-month-forward-button']"));
+            WebElement rightClick = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//button[@data-testid='enuygun-homepage-flight-departureDate-month-forward-button']"))));
             rightClick.click();
 
             List<WebElement> nowDates = driver.findElements(By.xpath("//div[@data-testid='enuygun-homepage-flight-departureDate-datepicker-calendar-month']"));
@@ -95,6 +95,42 @@ public class Case1Steps {
 
         WebElement returnButton = driver.findElement(By.xpath("//input[@data-testid='enuygun-homepage-flight-returnDate-datepicker-input']"));
         returnButton.click();
+
+
+        List<WebElement> returnDateElements = driver.findElements(By.xpath("//button[@data-testid='datepicker-active-day']"));
+        String returnTestIdValue = returnDateElements.get(0).getAttribute("title");
+
+        String[] returnParts = returnTestIdValue.split("-");
+        String returnYearNow = parts[0];
+        String returnMonthNow = parts[1];
+
+        String[] returnDates = returnDate.split("-");
+        String returnYear = date[0];
+        String returnMonth = date[1];
+
+        int returnYearNowInt = Integer.parseInt(returnYearNow);
+        int returnMonthNowInt = Integer.parseInt(returnMonthNow);
+        int returnYearInt = Integer.parseInt(returnYear);
+        int returnMonthInt = Integer.parseInt(returnMonth);
+
+        while (returnYearNowInt < returnYearInt ||
+                (returnYearNowInt == returnYearInt && monthNowInt == returnMonthInt)) {
+
+            WebElement rightClick = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//button[@data-testid='enuygun-homepage-flight-departureDate-month-forward-button']")));
+            rightClick.click();
+
+            // Güncelleme
+            List<WebElement> nowDates = driver.findElements(By.xpath("//div[@data-testid='enuygun-homepage-flight-departureDate-datepicker-calendar-month']"));
+
+            String testIdValues = nowDates.get(0).getAttribute("id");
+            String[] parts2 = testIdValues.split("-");
+
+            returnYearNowInt = Integer.parseInt(parts2[2]);
+            monthNowInt = Integer.parseInt(parts2[3]);
+        }
+
+
 
         WebElement returnPicker = driver.findElement(By.xpath("//button[@title='" + returnDate + "']"));
         returnPicker.click();
@@ -122,21 +158,54 @@ public class Case1Steps {
                 .release()
                 .perform();
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='filter-loading']")));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='filter-loading']")));
 
         WebElement slider2 = driver.findElement(By.cssSelector(".rc-slider-handle.rc-slider-handle-2"));
-        System.out.println("slider2: " + slider2.getLocation().getX());
-        actions.clickAndHold(slider2)
-                .moveByOffset(-(width - OffSet2),0)
-                .release()
-                .perform();
-        System.out.println("slider2: " + slider2.getLocation().getX());
 
+        actions.dragAndDropBy(slider2, -(width - OffSet2),0).perform();
+
+    }
+
+        @Then("all displayed flights should have departure times between {int} and {int}")
+        public void allDisplayedFlightsShouldHaveDepartureTimesBetweenAnd(int departureTime, int returnTime) {
         WebElement testIsOk = driver.findElement(By.xpath("//div[@class='filter-slider-content']"));
 
         String expectedText = String.format("%02d:%02d ile %02d:%02d arası", departureTime, 0, returnTime, 0);
 
         Assert.assertEquals(expectedText, testIsOk.getText());
+
+        }
+
+        @And("the flight list should be properly displayed")
+        public void theFlightListShouldBeProperlyDisplayed() {
+            WebElement flightList = driver.findElement(By.xpath("//div[@class='flight-list flight-list-departure    domesticList']"));
+            Assert.assertTrue( flightList.isDisplayed());
+
+            List<WebElement> flights = driver.findElements(By.xpath("//div[@data-flight-index]"));
+            Assert.assertFalse("Uçuş listesi boş!", flights.isEmpty());
+
+        }
+
+    @And("the search results should match the selected route from {string} to {string}")
+    public void theSearchResultsShouldMatchTheSelectedRouteFromFromCityToTo(String fromCity,String toCity) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebElement element = driver.findElement(By.xpath("//div[@class='form-header active']//strong[@class='graphic-strong']"));
+
+        String text = "";
+        if(element.isDisplayed()) {
+            text = element.getText().trim();
+            // Büyük küçük harf ayrımı yaparak araya boşluk koyuyoruz
+            String fixedText = text.replaceAll("([a-zçğıöşü])([A-ZÇĞIÖŞÜ])", "$1 $2");
+            System.out.println("deneme: '" + fixedText + "'");
+
+            String expectedText = (fromCity + " " + toCity).trim();
+            Assert.assertEquals(expectedText, fixedText);
+        } else {
+            System.out.println("Element DOM'da var ama görünür değil");
+            Assert.fail("Element DOM'da var ama görünür değil");
+        }
     }
+
+
 
 }
