@@ -1,19 +1,17 @@
-Feature: Complete Flight Booking Journey
+Feature: Hotel search on Enuygun
 
-  Scenario Outline: Book a Turkish Airlines flight and verify payment button
+  Scenario Outline: User searches for a hotel and sees results
     Given I am on the Enuygun homepage
-    When I search for a round-trip flight from "<fromCity>" to "<toCity>"
-    And I select departure date as "<departureDate>" and return date as "<returnDate>"
-    And I apply a departure time filter between "<departureTime>" and "<returnTime>"
-    And I filter flights by Turkish Airlines only
-    And I select the first available departure flight
-    And I select the first available return flight
-
-    When I enter contact details with email "<email>" and phone "<phone>"
-    And I enter passenger information with name "<firstName>", surname "<lastName>", birth date "<birthDate>", and ID "<tcNumber>"
-    And I click the continue button
-    Then I should see the "Make Payment" button on the payment screen
+    And I navigate to the Hotel search section
+    When I type "<location>" in the Location field
+    And I select check-in date "<checkin>" and check-out date "<checkout>"
+    And I set the guests to "<guests>"
+    And I click the "Find Hotel" button
+    Then the hotel results page should be displayed
+    And at least one hotel card should be listed
 
     Examples:
-      | fromCity | toCity | departureDate | departureTime | returnDate | returnTime | email         | phone        | firstName | lastName | birthDate  | tcNumber   |
-      | İstanbul | Ankara | 2025-06-01    | 10            | 2025-06-10 | 18         | test@test.com | 05554443322  | Ahmet     | Yılmaz   | 1990-01-01 | 12345678901 |
+      | location  | checkin   | checkout  | guests             |
+      | Antalya   | 19 May    | 22 May    | 2 Adults, 1 Child  |
+      | Istanbul  | 1 June    | 5 June    | 1 Adult            |
+      | Izmir     | 10 July   | 15 July   | 2 Adults           |
