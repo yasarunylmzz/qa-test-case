@@ -101,33 +101,30 @@ public class Case1Steps {
         String returnTestIdValue = returnDateElements.get(0).getAttribute("title");
 
         String[] returnParts = returnTestIdValue.split("-");
-        String returnYearNow = parts[0];
-        String returnMonthNow = parts[1];
+        String returnYearNow = returnParts[0];
+        String returnMonthNow = returnParts[1];
 
         String[] returnDates = returnDate.split("-");
-        String returnYear = date[0];
-        String returnMonth = date[1];
+        String returnYear = returnDates[0];
+        String returnMonth = returnDates[1];
 
         int returnYearNowInt = Integer.parseInt(returnYearNow);
         int returnMonthNowInt = Integer.parseInt(returnMonthNow);
         int returnYearInt = Integer.parseInt(returnYear);
         int returnMonthInt = Integer.parseInt(returnMonth);
 
-        while (returnYearNowInt < returnYearInt ||
-                (returnYearNowInt == returnYearInt && monthNowInt == returnMonthInt)) {
-
-            WebElement rightClick = wait.until(ExpectedConditions.elementToBeClickable(
-                    By.xpath("//button[@data-testid='enuygun-homepage-flight-departureDate-month-forward-button']")));
+        while (returnYearInt > returnYearNowInt || (returnYearInt == returnYearNowInt && returnMonthInt > returnMonthNowInt)){
+            WebElement rightClick = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//button[@data-testid='enuygun-homepage-flight-returnDate-month-forward-button']"))));
             rightClick.click();
 
-            // Güncelleme
-            List<WebElement> nowDates = driver.findElements(By.xpath("//div[@data-testid='enuygun-homepage-flight-departureDate-datepicker-calendar-month']"));
-
+            List<WebElement> nowDates = driver.findElements(By.xpath("//div[@data-testid='enuygun-homepage-flight-returnDate-datepicker-calendar-month']"));
             String testIdValues = nowDates.get(0).getAttribute("id");
             String[] parts2 = testIdValues.split("-");
+            returnYearNow = parts2[2];
+            returnMonthNow = parts2[3];
 
-            returnYearNowInt = Integer.parseInt(parts2[2]);
-            monthNowInt = Integer.parseInt(parts2[3]);
+            returnYearNowInt = Integer.parseInt(returnYearNow);
+            returnMonthNowInt = Integer.parseInt(returnMonthNow);
         }
 
 

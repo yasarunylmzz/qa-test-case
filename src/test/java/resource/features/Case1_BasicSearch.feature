@@ -12,5 +12,6 @@ Feature: Basic Flight Search and Time Filter
     Examples:
       | fromCity | toCity  | departureDate | departureTime | returnDate | returnTime |
       | İstanbul | Ankara  | 2025-09-10    | 10         | 2025-09-15 | 18      |
-      | İstanbul | Ankara  | 2025-11-12    | 10         | 2026-01-15 | 18      |
+      | İstanbul | Ankara  | 2025-07-12    | 10         | 2026-01-15 | 18      |
+
 
