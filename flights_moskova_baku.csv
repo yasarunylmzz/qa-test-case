@@ -1,0 +1,77 @@
+DepartureTime,ArrivalTime,AirlineName,Price,ConnectionInfo,Duration
+00:35,04:50,Ural Airlines,9571,0,195
+00:35,04:50,Ural Airlines,10067,0,195
+00:35,04:50,Ural Airlines,11037,0,195
+19:55,03:45,Belavia,11226,1,410
+17:05,03:45,Belavia,11226,1,580
+12:15,03:45,Belavia,11226,1,870
+00:40,05:00,Azerbaijan Airlines,11755,0,200
+00:40,05:00,Azerbaijan Airlines,11755,0,200
+12:10,16:30,Azerbaijan Airlines,11755,0,200
+12:10,16:30,Azerbaijan Airlines,11755,0,200
+10:50,15:20,IrAero Airlines,11965,0,210
+10:35,14:50,Aeroflot,12330,0,195
+14:45,19:05,Aeroflot,12330,0,200
+21:30,01:50,Aeroflot,12330,0,200
+01:00,05:25,Azerbaijan Airlines,12758,0,205
+01:00,05:25,Azerbaijan Airlines,12758,0,205
+12:50,17:15,Azerbaijan Airlines,12758,0,205
+12:50,17:15,Azerbaijan Airlines,12758,0,205
+00:35,04:50,Ural Airlines,12870,0,195
+00:40,05:00,S7 Airlines,13810,0,200
+15:05,03:05,Pegasus,14437,1,660
+14:40,04:05,AJet,14440,1,745
+12:10,16:30,S7 Airlines,15003,0,200
+14:40,16:35,AJet,15931,1,1495
+02:45,17:05,AJet,17535,1,800
+02:45,04:05,AJet,17535,1,1460
+19:55,03:45,Belavia,22402,1,410
+17:05,03:45,Belavia,22402,1,580
+12:15,03:45,Belavia,22402,1,870
+19:25,05:15,Türk Hava Yolları,24954,1,530
+19:25,10:40,Türk Hava Yolları,24954,1,855
+19:25,15:55,Türk Hava Yolları,24954,1,1170
+19:25,19:50,Türk Hava Yolları,24954,1,1405
+19:25,01:35,Türk Hava Yolları,24954,1,1750
+05:15,17:00,Flydubai,26367,1,645
+02:00,17:00,Flydubai,26367,1,840
+01:05,17:00,Flydubai,26367,1,895
+05:15,21:20,Flydubai,26367,1,905
+16:30,11:05,Flydubai,26367,1,1055
+02:00,21:20,Flydubai,26367,1,1100
+01:05,21:20,Flydubai,26367,1,1155
+16:30,17:00,Flydubai,26367,1,1410
+16:30,21:20,Flydubai,26367,1,1670
+05:15,11:05,Flydubai,26367,1,1730
+02:00,11:05,Flydubai,26367,1,1925
+05:15,17:00,Flydubai,29310,1,645
+16:30,11:05,Flydubai,29310,1,1055
+06:25,15:55,Türk Hava Yolları,30063,1,510
+14:30,01:35,Türk Hava Yolları,30063,1,605
+02:40,15:55,Türk Hava Yolları,30063,1,735
+06:25,19:50,Türk Hava Yolları,30063,1,745
+14:30,05:15,Türk Hava Yolları,30063,1,825
+02:40,19:50,Türk Hava Yolları,30063,1,970
+06:25,01:35,Türk Hava Yolları,30063,1,1090
+14:30,10:40,Türk Hava Yolları,30063,1,1150
+06:25,05:15,Türk Hava Yolları,30063,1,1310
+02:40,01:35,Türk Hava Yolları,30063,1,1315
+14:30,15:55,Türk Hava Yolları,30063,1,1465
+02:40,05:15,Türk Hava Yolları,30063,1,1535
+06:25,10:40,Türk Hava Yolları,30063,1,1635
+14:30,19:50,Türk Hava Yolları,30063,1,1700
+01:30,05:15,Scat Airlines,33225,1,1605
+00:35,10:40,Türk Hava Yolları,34825,1,545
+12:30,01:35,Türk Hava Yolları,34825,1,725
+00:35,15:55,Türk Hava Yolları,34825,1,860
+12:30,05:15,Türk Hava Yolları,34825,1,945
+00:35,19:50,Türk Hava Yolları,34825,1,1095
+12:30,10:40,Türk Hava Yolları,34825,1,1270
+00:35,01:35,Türk Hava Yolları,34825,1,1440
+12:30,15:55,Türk Hava Yolları,34825,1,1585
+00:35,05:15,Türk Hava Yolları,34825,1,1660
+12:30,19:50,Türk Hava Yolları,34825,1,1820
+23:10,16:10,Emirates,52453,1,960
+16:50,16:10,Azerbaijan Airlines,52453,1,1340
+08:15,16:10,Emirates,52453,1,1855
+00:10,12:40,Azerbaijan Airlines,64734,1,690

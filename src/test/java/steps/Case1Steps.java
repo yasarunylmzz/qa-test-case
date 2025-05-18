@@ -43,7 +43,6 @@ public class Case1Steps {
     @When("I search for a round-trip flight from {string} to {string}")
     public void iSearchForARoundTripFlightFromToCity(String fromCity, String toCity) {
 
-        homePage.selectRoundTrip();
 
         homePage.enterFromCity(fromCity);
 
@@ -53,6 +52,8 @@ public class Case1Steps {
 
     @And("I select departure date as {string} and return date as {string}")
     public void iSelectDepartureDateAsReturnDateAs(String departureDate, String returnDate) {
+
+        homePage.selectRoundTrip();
 
         homePage.clickDepartureDate();
 

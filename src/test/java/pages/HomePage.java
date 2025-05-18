@@ -29,15 +29,13 @@ public class HomePage {
     private final By roundTripLabel = By.xpath("//label[@data-testid='search-round-trip-label']");
     private final By fromCityInput = By.xpath("//input[@data-testid='endesign-flight-origin-autosuggestion-input']");
     private final By toCityInput = By.xpath("//input[@data-testid='endesign-flight-destination-autosuggestion-input']");
-    private final By firstToCityOption = By.xpath("//li[@data-testid='endesign-flight-destination-autosuggestion-option-item-0']");
+    private final By secondToCityOption = By.xpath("//li[@data-testid='endesign-flight-destination-autosuggestion-option-item-0']");
+    private final By firstToCityOption = By.xpath("//li[@data-testid='endesign-flight-origin-autosuggestion-option-item-0']");
     private final By departureDateButton = By.xpath("//div[@data-testid='enuygun-homepage-flight-departureDate-datepicker-popover-button']");
     private final By returnDateInput = By.xpath("//input[@data-testid='enuygun-homepage-flight-returnDate-datepicker-input']");
     private final By searchButton = By.xpath("//button[@data-testid='enuygun-homepage-flight-submitButton']");
     private final By oneWayCheckboxInput = By.xpath("//input[@data-testid='flight-oneWayCheckbox-input']");
     private final By oneWayCheckboxLabel = By.xpath("//label[@data-testid='flight-oneWayCheckbox-label']");
-
-
-
 
 
     public void selectRoundTrip(){
@@ -48,6 +46,7 @@ public class HomePage {
         WebElement fromInput = BrowserUtils.waitForClickability(driver, fromCityInput, 10);
         fromInput.clear();
         fromInput.sendKeys(fromCity);
+        BrowserUtils.waitForClickability(driver, firstToCityOption, 10);
         fromInput.sendKeys(org.openqa.selenium.Keys.ENTER);
     }
 
@@ -55,7 +54,7 @@ public class HomePage {
         WebElement toInput = BrowserUtils.waitForClickability(driver, toCityInput, 10);
         toInput.clear();
         toInput.sendKeys(toCity);
-        BrowserUtils.waitForClickability(driver, firstToCityOption, 10);
+        BrowserUtils.waitForClickability(driver, secondToCityOption, 10);
         toInput.sendKeys(Keys.ENTER);
     }
 
