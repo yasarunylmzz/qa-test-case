@@ -8,5 +8,5 @@ Feature: Data Extraction
     And I save all extracted data into a CSV file named "<fileName>"
 
     Examples:
-      | fromCity | toCity  | departureDate | returnDate |  fileName                 |
+      | fromCity | toCity  | departureDate | returnDate | fileName                 |
       | İstanbul | Lefkoşa | 2025-09-10     | 2025-09-15 | flights_istanbul_lefkoşa.csv |
