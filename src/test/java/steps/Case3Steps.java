@@ -25,8 +25,7 @@ import java.util.stream.Collectors;
 public class Case3Steps {
     WebDriver driver = DriverManager.getDriver();
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(45));
-    Actions actions = new Actions(driver);
-    SearchPage searchPage = new SearchPage();
+
 
     @Before
     public void setUp() {}
@@ -218,6 +217,52 @@ public class Case3Steps {
 
         List<WebElement> bookARoom = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//button[@data-testid='offer-select-room-button']")));
         bookARoom.get(0).click();
+
+    }
+
+    @And("I fill in the payment details with first name {string}, last name {string}, email {string}, phone {string}, and gender {string}")
+    public void fillPaymentDetails(String firstName, String lastName, String email, String phone, String gender) {
+        WebElement emailField = driver.findElement(By.xpath("//input[@data-testid='contact-email']"));
+        emailField.sendKeys(email);
+
+        WebElement phoneField = driver.findElement(By.xpath("//input[@data-testid='contactPhone']"));
+        phoneField.sendKeys(phone);
+
+        WebElement nameField = driver.findElement(By.xpath("//input[@data-testid='room-first-name']"));
+        nameField.sendKeys(firstName);
+
+        WebElement lastNameField = driver.findElement(By.xpath("//input[@data-testid='room-last-name']"));
+        lastNameField.sendKeys(lastName);
+
+        WebElement genderField = driver.findElement(By.xpath("//label[@data-testid='"+gender+"-label']"));
+        genderField.click();
+
+        WebElement submitButton = driver.findElement(By.xpath("//button[@data-testid='reservation-form-submit-button']"));
+        submitButton.click();
+    }
+
+
+    @And("I enter the card information with number {string}, expiry month {string}, expiry year {string}, and CVV {string}")
+    public void enterCardInformation(String number, String expiryMonth, String expiryYear, String CVV) {
+        WebElement cardNumberField = driver.findElement(By.xpath("//input[@data-testid='cardNumber']"));
+        cardNumberField.sendKeys(number);
+
+        WebElement cardMonthField = driver.findElement(By.xpath("//input[@data-testid='cardMonth-input']"));
+        cardMonthField.sendKeys(expiryMonth);
+
+        WebElement cardYearField = driver.findElement(By.xpath("//input[@data-testid='cardYear-input']"));
+        cardYearField.sendKeys(expiryYear);
+
+        WebElement cardCVV = driver.findElement(By.xpath("//input[@data-testid='CVV']"));
+        cardCVV.sendKeys(CVV);
+
+        WebElement submitButton = driver.findElement(By.xpath("//button[@data-testid='payment-form-submit-button']"));
+        submitButton.click();
+
+        WebElement cardNumberError = driver.findElement(By.xpath("//div[@data-testid='cardNumber-error-message']"));
+        String numberError = cardNumberError.getText();
+
+        Assert.assertEquals(numberError, "Lütfen geçerli bir kart numarası girin");
 
     }
 
