@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+
 import utilities.DriverManager;
 import utilities.FlightData;
 
@@ -23,6 +25,7 @@ public class CSVPage {
     WebDriver driver = DriverManager.getDriver();
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(45));
     List<FlightData> flightDataList = new ArrayList<>();
+    public static final Logger logger = org.slf4j.LoggerFactory.getLogger(HomePage.class);
 
 
     /**
@@ -69,7 +72,7 @@ public class CSVPage {
         String toLowerCase =  toCity.toLowerCase();
         String fromCityCase = fromCity.toLowerCase();
         String csvFileName = "flights_" + toLowerCase + "_" + fromCityCase + ".csv";
-        System.out.println("CSV file name: " + csvFileName);
+        logger.info("CSV file name: " + csvFileName);
         try (FileWriter writer = new FileWriter(csvFileName)) {
             writer.append("DepartureTime,ArrivalTime,AirlineName,Price,ConnectionInfo,Duration\n");
 
@@ -83,10 +86,9 @@ public class CSVPage {
             }
 
             writer.flush();
-            System.out.println("CSV file saved successfully: " + csvFileName);
+            logger.info("CSV file saved successfully: " + csvFileName);
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error occurred while saving CSV File!");
+            logger.error("Error occurred while saving CSV file: " + e.getMessage());
         }
     }
 

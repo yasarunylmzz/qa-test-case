@@ -75,7 +75,7 @@ public class HomePage {
     public void clickOneWayCheckbox() {
         List<WebElement> checkBoxes = driver.findElements(HomePageLocators.ONE_WAY_CHECKBOX_INPUT);
 
-        System.out.println("checkBoxInputs: " + checkBoxes.get(1).getText());
+        logger.info("checkBoxInputs: " + checkBoxes.get(1).getText());
         if (!checkBoxes.isEmpty()) {
             WebElement checkBoxInput = checkBoxes.get(1);
             boolean isSelected = checkBoxInput.isSelected();
