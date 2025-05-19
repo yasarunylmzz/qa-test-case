@@ -59,7 +59,7 @@ public class SearchPage {
         Assert.assertTrue( flightList.isDisplayed());
 
         List<WebElement> flight = BrowserUtils.findElements(SearchPageLocators.FLIGHTS);
-        Assert.assertFalse("Uçuş listesi boş!", flight.isEmpty());
+        Assert.assertFalse("flight list is empty", flight.isEmpty());
     }
 
     public void routeIsCorrect (String fromCity,String toCity){

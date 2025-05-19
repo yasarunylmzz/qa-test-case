@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
 
 import pages.locators.HomePageLocators;
 import utilities.BrowserUtils;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class HomePage {
     private final WebDriver driver;
+    public static final Logger logger = org.slf4j.LoggerFactory.getLogger(HomePage.class);
 
     // Constructor
     public HomePage() {
@@ -30,6 +32,7 @@ public class HomePage {
         fromInput.sendKeys(fromCity);
         BrowserUtils.waitForClickability(HomePageLocators.FIRST_TO_CITY_OPTION);
         fromInput.sendKeys(Keys.ENTER);
+
     }
 
     public void enterToCity(String toCity){
@@ -38,6 +41,7 @@ public class HomePage {
         toInput.sendKeys(toCity);
         BrowserUtils.waitForClickability(HomePageLocators.SECOND_TO_CITY_OPTION);
         toInput.sendKeys(Keys.ENTER);
+
     }
 
 
@@ -55,11 +59,18 @@ public class HomePage {
 
     public void clickSearchButton() {
         BrowserUtils.waitForClickability(HomePageLocators.SEARCH_BUTTON).click();
+         WebElement originError = BrowserUtils.waitForPresence(HomePageLocators.ORIGIN_ERROR);
+        if (originError.isDisplayed()) {
+            logger.info("Origin error message is displayed: " + originError.getText());
+        } else {
+            logger.info("Origin error message is not displayed.");
+        }
     }
     public void departurePicker(String departureDate){
         // final By departurePicker = By.xpath("//button[@title='" + departureDate + "']");
         BrowserUtils.waitForClickability(HomePageLocators.DEPARTURE_DATE_BUTTON).click();
-    }
+
+       }
 
     public void returnPicker(String returnDate){
         final By returnPicker = By.xpath("//button[@title='" + returnDate + "']");
@@ -73,7 +84,7 @@ public class HomePage {
         if (!checkBoxes.isEmpty()) {
             WebElement checkBoxInput = checkBoxes.get(1);
             boolean isSelected = checkBoxInput.isSelected();
-            System.out.println("isSelected: " + isSelected);
+            logger.info("isSelected: " + isSelected);
 
             if (isSelected) {
                 List<WebElement> label = BrowserUtils.findElements(HomePageLocators.ONE_WAY_CHECKBOX_LABEL);

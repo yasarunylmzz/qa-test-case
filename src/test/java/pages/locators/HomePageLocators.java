@@ -14,6 +14,6 @@ public class HomePageLocators {
     public static final By ONE_WAY_CHECKBOX_INPUT = By.xpath("//input[@data-testid='flight-oneWayCheckbox-input']");
     public static final By ONE_WAY_CHECKBOX_LABEL = By.xpath("//label[@data-testid='flight-oneWayCheckbox-label']");
     public static final By DATEPICKER_ACTIVE_DAY = By.xpath("//button[@data-testid='datepicker-active-day']");
-
-    
+    public static final By ORIGIN_ERROR = By.xpath("//div[@data-testid='flight-origin-error-message']");
+    public static final By DESTINATION_ERROR = By.xpath("//div[@data-testid='flight-destination-error-message']");
 }

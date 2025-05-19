@@ -12,5 +12,7 @@ Feature: Basic Flight Search and Time Filter
     Examples:
       | fromCity | toCity  | departureDate | departureTime | returnDate | returnTime |
       | İstanbul | Lefkoşa  | 2025-09-10    | 10         | 2025-09-15 | 18      |
+      |  |   | 2025-09-10    | 10         | 2025-09-15 | 18      |
+
 
 
