@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import pages.locators.HotelPageLocators;
 import utilities.BrowserUtils;
 import utilities.DriverManager;
 import java.util.List;
@@ -23,7 +25,7 @@ public class EndToEndHotelBookingSteps {
     }
 
     public void hotelSearch() {
-        BrowserUtils.findElement(By.xpath("//a[@data-testid='header-nav-links-1']")).click();
+        BrowserUtils.findElement(HotelPageLocators.HOTEL_NAV_LINK).click();
 
         String currentUrl = driver.getCurrentUrl();
         assert currentUrl != null;
@@ -31,25 +33,25 @@ public class EndToEndHotelBookingSteps {
     }
 
     public void hotelSelect(String location){
-        BrowserUtils.findElement(By.xpath("//input[@data-testid='endesign-hotel-autosuggestion-input']")).sendKeys(location);
+        BrowserUtils.findElement(HotelPageLocators.HOTEL_AUTOSUGGEST_INPUT).sendKeys(location);
 
-        BrowserUtils.findElement(By.xpath("//li[@data-testid='endesign-hotel-autosuggestion-option-item-0']")).click();
+        BrowserUtils.findElement(HotelPageLocators.HOTEL_AUTOSUGGEST_OPTION_ITEM_0).click();
     }
 
     public void checkInCheckOut(String checkin, String checkout) {
-        BrowserUtils.findElement(By.xpath("//div[@data-testid='hotel-datepicker-popover-button']")).click();
+        BrowserUtils.findElement(HotelPageLocators.HOTEL_DATEPICKER_POPOVER_BUTTON).click();
         navigateToCheckInMonth(checkin);
         BrowserUtils.findElement(By.xpath("//button[@title='"+checkin+"']")).click();
         BrowserUtils.findElement(By.xpath("//button[@title='"+checkout+"']")).click();
-        BrowserUtils.findElement(By.xpath("//div[@data-testid='hotel-datepicker-popover-button']")).click();
+        BrowserUtils.findElement(HotelPageLocators.HOTEL_DATEPICKER_POPOVER_BUTTON).click();
 
 
-        List<WebElement> selectedDates = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//button[@data-testid='datepicker-active-day']")));
+        List<WebElement> selectedDates = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(HotelPageLocators.DATEPICKER_ACTIVE_DAY));
         List<String> dates = selectedDates.stream()
                 .map(e -> e.getAttribute("title"))
                 .collect(Collectors.toList());
 
-        BrowserUtils.findElement(By.xpath("//div[@data-testid='hotel-datepicker-popover-button']")).click();
+        BrowserUtils.findElement(HotelPageLocators.HOTEL_DATEPICKER_POPOVER_BUTTON).click();
 
 
         Assert.assertTrue(dates.contains(checkin));
@@ -69,18 +71,18 @@ public class EndToEndHotelBookingSteps {
         adjustGuestCount(
                 wait,
                 Integer.parseInt(adult),
-                By.xpath("//div[@data-testid='hotel-adult-counter-count']"),
-                By.xpath("//button[@data-testid='hotel-adult-counter-plus-button']"),
-                By.xpath("//button[@data-testid='hotel-adult-counter-minus-button']")
-        );
+                HotelPageLocators.HOTEL_ADULT_COUNTER_COUNT,
+                HotelPageLocators.HOTEL_ADULT_COUNTER_PLUS_BUTTON,
+                HotelPageLocators.HOTEL_ADULT_COUNTER_MINUS_BUTTON
+                );
 
         //child
         adjustGuestCount(
                 wait,
                 Integer.parseInt(child),
-                By.xpath("//div[@data-testid='hotel-child-counter-count']"),
-                By.xpath("//button[@data-testid='hotel-child-counter-plus-button']"),
-                By.xpath("//button[@data-testid='hotel-child-counter-minus-button']")
+                HotelPageLocators.HOTEL_CHILD_COUNTER_COUNT,
+                HotelPageLocators.HOTEL_CHILD_COUNTER_PLUS_BUTTON,
+                HotelPageLocators.HOTEL_CHILD_COUNTER_MINUS_BUTTON
         );
 
         if (childInt > 0 && !childsAge.isEmpty()) {
@@ -100,7 +102,7 @@ public class EndToEndHotelBookingSteps {
             System.out.println("child ages: " + childsAge);
         }
 
-        String isValue = BrowserUtils.findElement(By.xpath("//input[@data-testid='hotel-popover-button']")).getAttribute("value");
+        String isValue = BrowserUtils.findElement(HotelPageLocators.HOTEL_POPOVER_BUTTON).getAttribute("value");
 
         if(child.isEmpty()){
             Assert.assertEquals(justAdultText,isValue);
@@ -110,18 +112,18 @@ public class EndToEndHotelBookingSteps {
     }
 
     public void SubmitButton(){
-        BrowserUtils.findElement(By.xpath("//button[@data-testid='hotel-submit-search-button']")).click();
-        WebElement cityIsCorrect = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//h3[@data-testid='hotel-result-title']")
-        ));
+        BrowserUtils.findElement(HotelPageLocators.HOTEL_SUBMIT_SEARCH_BUTTON).click();
+
+        WebElement cityIsCorrect = wait.until(ExpectedConditions.visibilityOfElementLocated(HotelPageLocators.HOTEL_RESULT_TITLE));
+
         Assert.assertTrue(cityIsCorrect.isDisplayed());
     }
 
     public void hotelPricesAscendingOrder(){
         BrowserUtils.findElement(By.xpath("//button[@data-testid='sort-fiyat-artan-button']")).click();
 
-        List<WebElement> hotels = BrowserUtils.findElements(By.xpath("//div[@data-testid='result-available-hotel']"));
-        WebElement hotelNameElement = hotels.get(0).findElement(By.xpath(".//h4[@data-testid='result-title']"));
+        List<WebElement> hotels = BrowserUtils.findElements(HotelPageLocators.RESULT_AVAILABLE_HOTEL);
+        WebElement hotelNameElement = hotels.get(0).findElement(HotelPageLocators.RESULT_TITLE);
         String hotelName = hotelNameElement.getText();
         hotels.get(0).click();
 
@@ -138,35 +140,35 @@ public class EndToEndHotelBookingSteps {
             }
         }
 
-        WebElement hotelNameDOM = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[@data-testid='hotel-title']")));
+        WebElement hotelNameDOM = wait.until(ExpectedConditions.visibilityOfElementLocated(HotelPageLocators.HOTEL_TITLE));
 
         Assert.assertEquals(hotelName, hotelNameDOM.getText());
     }
 
     public void verifyHotelAndBookRoomButton() {
         //offer radio buttons
-        BrowserUtils.findElements(By.xpath("//div[@data-testid='offer-item-container']")).get(0).click();;
+        BrowserUtils.findElements(HotelPageLocators.OFFER_ITEM_CONTAINER).get(0).click();;
 
         //book a room buttons
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//button[@data-testid='offer-select-room-button']"))).get(0).click();
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(HotelPageLocators.OFFER_SELECT_ROOM_BUTTON)).get(0).click();
     }
 
     public void guessDetails(String firstName, String lastName, String email, String phone, String gender) {
         // email fields
-        BrowserUtils.findElement(By.xpath("//input[@data-testid='contact-email']")).sendKeys(email);
+        BrowserUtils.findElement(HotelPageLocators.CONTACT_EMAIL).sendKeys(email);
 
         // phone fields
-        BrowserUtils.findElement(By.xpath("//input[@data-testid='contactPhone']")).sendKeys(phone);
+        BrowserUtils.findElement(HotelPageLocators.CONTACT_PHONE).sendKeys(phone);
 
         // firstname fields
-        List<WebElement> names = BrowserUtils.findElements( By.xpath("//input[@data-testid='room-first-name']"));
+        List<WebElement> names = BrowserUtils.findElements(HotelPageLocators.ROOM_FIRST_NAME);
 
         for (WebElement element : names) {
             element.sendKeys(firstName);
         }
 
         // lastname fields
-        List<WebElement> lastNames = BrowserUtils.findElements(By.xpath("//input[@data-testid='room-last-name']"));
+        List<WebElement> lastNames = BrowserUtils.findElements(HotelPageLocators.ROOM_LAST_NAME);
         for (WebElement element : lastNames) {
             element.sendKeys(lastName);
         }
@@ -175,15 +177,15 @@ public class EndToEndHotelBookingSteps {
         BrowserUtils.findElement(By.xpath("//label[@data-testid='"+gender+"-label']")).click();
 
         // click button
-        BrowserUtils.findElement(By.xpath("//button[@data-testid='reservation-form-submit-button']")).click();
+        BrowserUtils.findElement(HotelPageLocators.RESERVATION_FORM_SUBMIT_BUTTON).click();
     }
 
     public void cardDetails(String number, String expiryMonth, String expiryYear, String CVV) {
         // card number
-        BrowserUtils.findElement(By.xpath("//input[@data-testid='cardNumber']")).sendKeys(number);
+        BrowserUtils.findElement(HotelPageLocators.CARD_NUMBER).sendKeys(number);
 
         // card month
-        BrowserUtils.findElement(By.xpath("//input[@data-testid='cardMonth-input']")).click();
+        BrowserUtils.findElement(HotelPageLocators.CARD_MONTH_INPUT).click();
 
         List<WebElement> monthOption = driver.findElements(By.xpath("//button[starts-with(@data-testid, 'cardMonth-option-')]"));
         for (WebElement month : monthOption) {
@@ -194,7 +196,7 @@ public class EndToEndHotelBookingSteps {
         }
 
         // card year
-        WebElement yearDropdown = BrowserUtils.findElement(By.xpath("//span[@data-testid='cardYear-input-box']"));
+        WebElement yearDropdown = BrowserUtils.findElement(HotelPageLocators.CARD_YEAR_INPUT_BOX);
         yearDropdown.click();
 
         List<WebElement> yearOptions = driver.findElements(By.xpath("//button[starts-with(@data-testid, 'cardYear-option-')]"));
@@ -207,20 +209,22 @@ public class EndToEndHotelBookingSteps {
         }
 
         // card cvv
-        BrowserUtils.findElement(By.xpath("//input[@data-testid='CVV']")).sendKeys(CVV);
+        BrowserUtils.findElement(HotelPageLocators.CVV).sendKeys(CVV);
 
 
         // card submit button
-        BrowserUtils.waitForClickability(By.xpath("//button[@data-testid='payment-form-submit-button']")).click();
+        BrowserUtils.waitForClickability(HotelPageLocators.PAYMENT_FORM_SUBMIT_BUTTON).click();
 
         // payment screen is displayed
-        WebElement waitingMessage = BrowserUtils.findElement(By.xpath("//div[@data-testid='[unnamed]-alert-body']"));
+        WebElement waitingMessage = BrowserUtils.findElement(HotelPageLocators.PAYMENT_ALERT_BODY);
+
+        Assert.assertTrue(waitingMessage.isDisplayed());
         Assert.assertEquals(waitingMessage.getText(),"İşlem başarısız, lütfen başka bir kart ile tekrar deneyin.");
     }
 
 
     public void navigateToCheckInMonth(String checkinDate){
-        List<WebElement> nowDate = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//button[@data-day='1']")));
+        List<WebElement> nowDate = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(HotelPageLocators.BUTTON_DATA_DAY_1));
         String NowDateAttribute = nowDate.get(0).getAttribute("title");
 
         String[] checkInDates = checkinDate.split("-");
@@ -238,11 +242,11 @@ public class EndToEndHotelBookingSteps {
 
 
         while(checkInYear > yearNowInt || (checkInYear == yearNowInt && checkInMonth > monthNowInt)) {
-            WebElement rightClick = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//button[@data-testid='hotel-month-forward-button']"))));
+            WebElement rightClick = wait.until(ExpectedConditions.elementToBeClickable((HotelPageLocators.HOTEL_MONTH_FORWARD_BUTTON)));
             rightClick.click();
 
 
-            List<WebElement> nowDates = driver.findElements(By.xpath("//button[@data-day='1']"));
+            List<WebElement> nowDates = driver.findElements(HotelPageLocators.BUTTON_DATA_DAY_1);
             String testIdValues = nowDates.get(0).getAttribute("title");
             String[] parts2 = testIdValues.split("-");
             yearNow = parts2[0];
