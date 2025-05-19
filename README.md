@@ -1,6 +1,6 @@
 # Enuygun QA Automation Test Project
 
-This project provides end-to-end automation tests for the https://wwww.enuygun.com/ web application using Cucumber, JUnit, and Selenium WebDriver. Tests are written following the BDD (Behavior Driven Development) approach.
+This project provides end-to-end automation tests for the https://www.enuygun.com/ web application using Cucumber, JUnit, and Selenium WebDriver. Tests are written following the BDD (Behavior Driven Development) approach.
 
 ---
 
