@@ -30,14 +30,6 @@ class Flight {
         return betterOrEqual && strictlyBetter;
     }
 
-    public static List<Flight> findParetoOptimalParallel(List<Flight> flights) {
-        return flights.parallelStream()
-                .filter(f1 -> flights.stream().noneMatch(f2 -> f2 != f1 && f2.dominates(f1)))
-                .toList();
-    }
-
-
-
 
 }
 

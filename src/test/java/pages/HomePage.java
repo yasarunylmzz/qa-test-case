@@ -52,7 +52,6 @@ public class HomePage {
 
     public void activeDayPickerIsAvailable(){
         BrowserUtils.waitForPresence(By.xpath("//button[@data-testid='datepicker-active-day']"));
-
     }
 
     public void clickDepartureDate(){

@@ -78,6 +78,8 @@ public class FlightAnalyzer {
                         flight.airline, flight.price, flight.duration, flight.transfers);
             }
 
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

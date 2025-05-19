@@ -28,37 +28,37 @@ public class SearchPage {
 
 
     public void openDepartureTimeFilter() {
-        wait.until(ExpectedConditions.elementToBeClickable(SearchPageLocators.departureTimeFilterButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(SearchPageLocators.DEPERTURE_TIME_FILTER_BUTTON)).click();
     }
 
     public void setDepartureTimeRange(int departureTime, int returnTime) {
-        WebElement step = BrowserUtils.findElement(SearchPageLocators.sliderStep);
+        WebElement step = BrowserUtils.findElement(SearchPageLocators.SLIDER_STEP);
         int width = step.getSize().getWidth();
 
         int offsetStart = (width / 24) * departureTime;
         int offsetEnd = (width / 24) * returnTime;
 
-        WebElement leftHandle = BrowserUtils.findElement(SearchPageLocators.sliderLeftHandle);
+        WebElement leftHandle = BrowserUtils.findElement(SearchPageLocators.SLIDER_LEFT_HANDLE);
         actions.clickAndHold(leftHandle).moveByOffset(offsetStart, 0).release().perform();
 
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(SearchPageLocators.filterLoading));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(SearchPageLocators.FILTER_LOADING));
 
-        WebElement rightHandle = BrowserUtils.findElement(SearchPageLocators.sliderRightHandle);
+        WebElement rightHandle = BrowserUtils.findElement(SearchPageLocators.SLIDER_RIGHT_HANDLE);
         actions.dragAndDropBy(rightHandle, -(width - offsetEnd), 0).perform();
     }
 
     public void isCorrectTime (int departureTime, int returnTime) {
-        WebElement testIsOk = BrowserUtils.findElement(SearchPageLocators.filterSliderContent);
+        WebElement testIsOk = BrowserUtils.findElement(SearchPageLocators.FILTER_SLIDER_CONTENT);
 
         String expectedText = String.format("%02d:%02d ile %02d:%02d arası", departureTime, 0, returnTime, 0);
         Assert.assertEquals(expectedText, testIsOk.getText());
     }
 
     public void flightListIsAvailable() {
-        WebElement flightList = BrowserUtils.findElement(SearchPageLocators.flightListDiv);
+        WebElement flightList = BrowserUtils.findElement(SearchPageLocators.FLIGHT_LIST_DIV);
         Assert.assertTrue( flightList.isDisplayed());
 
-        List<WebElement> flight = BrowserUtils.findElements(SearchPageLocators.flights);
+        List<WebElement> flight = BrowserUtils.findElements(SearchPageLocators.FLIGHTS);
         Assert.assertFalse("Uçuş listesi boş!", flight.isEmpty());
     }
 

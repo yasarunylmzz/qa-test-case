@@ -60,7 +60,7 @@ public class EndToEndHotelBookingSteps {
 
     public void setGuestAndSetChild(String adult, String child, String childsAge){
         // adult guest button
-        BrowserUtils.waitForClickability(By.xpath("//div[@data-testid='hotel']")).click();
+        BrowserUtils.waitForClickability(HotelPageLocators.HOTEL_GUEST_BUTTON).click();
 
 
         String childAndAdultText = adult + " Yetişkin, " + child + " Çocuk," + " 1 Oda";
@@ -120,7 +120,7 @@ public class EndToEndHotelBookingSteps {
     }
 
     public void hotelPricesAscendingOrder(){
-        BrowserUtils.findElement(By.xpath("//button[@data-testid='sort-fiyat-artan-button']")).click();
+        BrowserUtils.findElement(HotelPageLocators.SORT_FIYAT_ARTAN_BUTTON).click();
 
         List<WebElement> hotels = BrowserUtils.findElements(HotelPageLocators.RESULT_AVAILABLE_HOTEL);
         WebElement hotelNameElement = hotels.get(0).findElement(HotelPageLocators.RESULT_TITLE);
