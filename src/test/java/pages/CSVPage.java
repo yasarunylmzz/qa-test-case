@@ -24,6 +24,10 @@ public class CSVPage {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(45));
     List<FlightData> flightDataList = new ArrayList<>();
 
+
+    /**
+     * Selects all flight cards and extracts relevant information.
+     */
     public void selectAllFlights() {
         List<WebElement> flyCards = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(CSVPageLocators.FLY_CARDS));
         List<WebElement> departureTime = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(CSVPageLocators.DEPARTURE_TIME));
@@ -55,7 +59,12 @@ public class CSVPage {
         }
     }
 
-
+    /**
+     * Saves all flight data to a CSV file.
+     *
+     * @param toCity   The destination city.
+     * @param fromCity The departure city.
+     */
     public void saveAllFlightsInCSV(String toCity, String fromCity){
         String toLowerCase =  toCity.toLowerCase();
         String fromCityCase = fromCity.toLowerCase();
@@ -74,14 +83,19 @@ public class CSVPage {
             }
 
             writer.flush();
-            System.out.println("CSV dosyası başarıyla kaydedildi: " + csvFileName);
+            System.out.println("CSV file saved successfully: " + csvFileName);
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("CSV dosyası kaydedilirken hata oluştu!");
+            System.out.println("Error occurred while saving CSV File!");
         }
     }
 
-
+    /**
+     * Analyzes the flight data and generates graphs and Pareto optimality.
+     *
+     * @param fromCity The departure city.
+     * @param toCity   The destination city.
+     */
     public void analyzeFunctions(String fromCity, String toCity) {
         String lowerCaseFromCity = fromCity.toLowerCase();
         String lowerCaseToCity = toCity.toLowerCase();
@@ -109,7 +123,13 @@ public class CSVPage {
         }
     }
 
-
+    /**
+     * Converts a duration string in the format "Xg Ysa Zdk" to total minutes.
+     * Example: "2g 3sa 15dk" -> 2 * 24 * 60 + 3 * 60 + 15 = total minutes
+     *
+     * @param duration The duration string to convert.
+     * @return The total duration in minutes.
+     */
     public int convertDurationToMinutes(String duration) {
         int totalMinutes = 0;
 
