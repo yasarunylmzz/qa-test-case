@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import pages.locators.HomePageLocators;
 import utilities.BrowserUtils;
 import utilities.DriverManager;
 
@@ -17,35 +19,24 @@ public class HomePage {
         this.driver = DriverManager.getDriver();
     }
 
-    private final By roundTripLabel = By.xpath("//label[@data-testid='search-round-trip-label']");
-    private final By fromCityInput = By.xpath("//input[@data-testid='endesign-flight-origin-autosuggestion-input']");
-    private final By toCityInput = By.xpath("//input[@data-testid='endesign-flight-destination-autosuggestion-input']");
-    private final By secondToCityOption = By.xpath("//li[@data-testid='endesign-flight-destination-autosuggestion-option-item-0']");
-    private final By firstToCityOption = By.xpath("//li[@data-testid='endesign-flight-origin-autosuggestion-option-item-0']");
-    private final By departureDateButton = By.xpath("//div[@data-testid='enuygun-homepage-flight-departureDate-datepicker-popover-button']");
-    private final By returnDateInput = By.xpath("//input[@data-testid='enuygun-homepage-flight-returnDate-datepicker-input']");
-    private final By searchButton = By.xpath("//button[@data-testid='enuygun-homepage-flight-submitButton']");
-    private final By oneWayCheckboxInput = By.xpath("//input[@data-testid='flight-oneWayCheckbox-input']");
-    private final By oneWayCheckboxLabel = By.xpath("//label[@data-testid='flight-oneWayCheckbox-label']");
-
 
     public void selectRoundTrip(){
-        BrowserUtils.waitForClickability(roundTripLabel).click();
+        BrowserUtils.waitForClickability(HomePageLocators.ROUND_TRIP_LABEL).click();
     }
 
     public void enterFromCity(String fromCity){
-        WebElement fromInput = BrowserUtils.waitForClickability(fromCityInput);
+        WebElement fromInput = BrowserUtils.waitForClickability(HomePageLocators.FROM_CITY_INPUT);
         fromInput.clear();
         fromInput.sendKeys(fromCity);
-        BrowserUtils.waitForClickability(firstToCityOption);
-        fromInput.sendKeys(org.openqa.selenium.Keys.ENTER);
+        BrowserUtils.waitForClickability(HomePageLocators.FIRST_TO_CITY_OPTION);
+        fromInput.sendKeys(Keys.ENTER);
     }
 
     public void enterToCity(String toCity){
-        WebElement toInput = BrowserUtils.waitForClickability(toCityInput);
+        WebElement toInput = BrowserUtils.waitForClickability(HomePageLocators.TO_CITY_INPUT);
         toInput.clear();
         toInput.sendKeys(toCity);
-        BrowserUtils.waitForClickability(secondToCityOption);
+        BrowserUtils.waitForClickability(HomePageLocators.SECOND_TO_CITY_OPTION);
         toInput.sendKeys(Keys.ENTER);
     }
 
@@ -55,19 +46,19 @@ public class HomePage {
     }
 
     public void clickDepartureDate(){
-        BrowserUtils.waitForClickability(departureDateButton).click();
+        BrowserUtils.waitForClickability(HomePageLocators.DEPARTURE_DATE_BUTTON).click();
     }
 
     public void clickReturnDate() {
-        BrowserUtils.waitForClickability(returnDateInput).click();
+        BrowserUtils.waitForClickability(HomePageLocators.RETURN_DATE_INPUT).click();
     }
 
     public void clickSearchButton() {
-        BrowserUtils.waitForClickability(searchButton).click();
+        BrowserUtils.waitForClickability(HomePageLocators.SEARCH_BUTTON).click();
     }
     public void departurePicker(String departureDate){
-        final By departurePicker = By.xpath("//button[@title='" + departureDate + "']");
-        BrowserUtils.waitForClickability(departureDateButton).click();
+        // final By departurePicker = By.xpath("//button[@title='" + departureDate + "']");
+        BrowserUtils.waitForClickability(HomePageLocators.DEPARTURE_DATE_BUTTON).click();
     }
 
     public void returnPicker(String returnDate){
@@ -76,7 +67,7 @@ public class HomePage {
     }
 
     public void clickOneWayCheckbox() {
-        List<WebElement> checkBoxes = driver.findElements(oneWayCheckboxInput);
+        List<WebElement> checkBoxes = driver.findElements(HomePageLocators.ONE_WAY_CHECKBOX_INPUT);
 
         System.out.println("checkBoxInputs: " + checkBoxes.get(1).getText());
         if (!checkBoxes.isEmpty()) {
@@ -85,7 +76,7 @@ public class HomePage {
             System.out.println("isSelected: " + isSelected);
 
             if (isSelected) {
-                List<WebElement> label = BrowserUtils.findElements(oneWayCheckboxLabel);
+                List<WebElement> label = BrowserUtils.findElements(HomePageLocators.ONE_WAY_CHECKBOX_LABEL);
                 label.get(1).click();
             }
         }
@@ -94,7 +85,7 @@ public class HomePage {
 
     public void moveToTargetMonth( String dateValue, String route){
         List<WebElement> dateElements = BrowserUtils.findElements(By.xpath("//button[@data-testid='datepicker-active-day']"));
-        String testIdValue = dateElements.get(0).getAttribute("title");
+        String testIdValue = dateElements.get(0).getDomAttribute("title");
 
         String[] parts = testIdValue.split("-");
         String yearNow = parts[0];
@@ -115,7 +106,7 @@ public class HomePage {
 
 
             List<WebElement> nowDates = BrowserUtils.findElements(By.xpath("//div[@data-testid='enuygun-homepage-flight-"+route+"-datepicker-calendar-month']"));
-            String testIdValues = nowDates.get(0).getAttribute("id");
+            String testIdValues = nowDates.get(0).getDomAttribute("id");
             String[] parts2 = testIdValues.split("-");
             yearNow = parts2[2];
             monthNow = parts2[3];

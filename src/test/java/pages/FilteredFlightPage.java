@@ -1,11 +1,12 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import pages.locators.FilteredFlightLocators;
 import utilities.BrowserUtils;
 import utilities.DriverManager;
 
@@ -20,14 +21,14 @@ public class FilteredFlightPage {
 
 
     public void filterFlight(){
-        BrowserUtils.findElement(By.xpath("//div[@class='filter-loading']"));
-        BrowserUtils.waitForElementToDisappear(By.className("filter-loading-effect"));
+        BrowserUtils.findElement(FilteredFlightLocators.FILTER_LOADING);
+        BrowserUtils.waitForElementToDisappear(FilteredFlightLocators.FILTER_LOADING_EFFECT);
 
-        BrowserUtils.waitForClickability(By.xpath("//div[@class='filter-card card']//div[@class='ctx-filter-airline card-header']"))
+        BrowserUtils.waitForClickability(FilteredFlightLocators.FILTER_AIRLINE_HEADER)
                 .click();
 
 
-        List<WebElement> showMoreButtons = BrowserUtils.findElements(By.xpath("//div[@class='filter-show-more']"));
+        List<WebElement> showMoreButtons = BrowserUtils.findElements(FilteredFlightLocators.FILTER_SHOW_MORE);
         if (!showMoreButtons.isEmpty()) {
             WebElement showMoreButton = showMoreButtons.get(0);
             if (showMoreButton.isDisplayed()) {
@@ -36,13 +37,13 @@ public class FilteredFlightPage {
         }
 
 
-        BrowserUtils.findElement(By.xpath("//label[@for='TKairlines']"))
+        BrowserUtils.findElement(FilteredFlightLocators.AIRLINE_TK_LABEL)
                 .click();
     }
 
     public void allFlightsIsCorrect(){
-        BrowserUtils.waitForElementToDisappear(By.xpath("//div[@class='filter-loading']"));
-        List<WebElement> airlines = BrowserUtils.waitForPresenceAllElement(By.xpath("//div[@class='summary-marketing-airlines ']"));
+        BrowserUtils.waitForElementToDisappear(FilteredFlightLocators.FILTER_LOADING_EFFECT);
+        List<WebElement> airlines = BrowserUtils.waitForPresenceAllElement(FilteredFlightLocators.SUMMARY_MARKETING_AIRLINES);
         boolean allTurkishAirlines = true;
 
         System.out.println(airlines.get(0).getText());
@@ -58,14 +59,14 @@ public class FilteredFlightPage {
     }
 
     public void allFlightIsAscendingOrder(){
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='filter-loading']")));
-        WebElement ascendingButton = BrowserUtils.findElement(By.xpath("//div[@data-testid='sortButtons0']"));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(FilteredFlightLocators.FILTER_LOADING));
+        WebElement ascendingButton = BrowserUtils.findElement(FilteredFlightLocators.SORT_BUTTONS_0);
         ascendingButton.click();
 
-        List<WebElement> priceElements = BrowserUtils.findElements(By.xpath("//div[@data-testid='flightInfoPrice']"));
+        List<WebElement> priceElements = BrowserUtils.findElements(FilteredFlightLocators.FLIGHT_INFO_PRICE);
         List<Double> prices = new ArrayList<>();
         for (WebElement priceEl : priceElements) {
-            String priceText = priceEl.getAttribute("data-price"); // örnek: "2076.99"
+            String priceText = priceEl.getDomAttribute("data-price"); // örnek: "2076.99"
             if (priceText != null && !priceText.isEmpty()) {
                 prices.add(Double.parseDouble(priceText));
             }

@@ -1,7 +1,8 @@
 package pages;
 
 import analysis.FlightAnalyzer;
-import org.openqa.selenium.By;
+import pages.locators.CSVPageLocators;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,13 +25,13 @@ public class CSVPage {
     List<FlightData> flightDataList = new ArrayList<>();
 
     public void selectAllFlights() {
-        List<WebElement> flyCards = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='flight-summary-infos']")));
-        List<WebElement> departureTime = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='flight-departure-time']")));
-        List<WebElement> returnTime = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='flight-arrival-time']")));
-        List<WebElement> airlineName = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='summary-marketing-airlines ']")));
-        List<WebElement> prices = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='summary-average-price']")));
-        List<WebElement> connectionINFO = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[contains(@class, 'summary-transit')]")));
-        List<WebElement> durationInfo = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//span[@data-testid='departureFlightTime']")));
+        List<WebElement> flyCards = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(CSVPageLocators.FLY_CARDS));
+        List<WebElement> departureTime = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(CSVPageLocators.DEPARTURE_TIME));
+        List<WebElement> returnTime = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(CSVPageLocators.RETURN_TIME));
+        List<WebElement> airlineName = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(CSVPageLocators.AIRLINE_NAME));
+        List<WebElement> prices = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(CSVPageLocators.PRICES));
+        List<WebElement> connectionINFO = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(CSVPageLocators.CONNECTION_INFO));
+        List<WebElement> durationInfo = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(CSVPageLocators.DURATION_INFO));
 
         for (int j = 0; j < flyCards.size(); j++) {
             String depTime = departureTime.get(j).getText();

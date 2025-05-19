@@ -48,7 +48,7 @@ public class EndToEndHotelBookingSteps {
 
         List<WebElement> selectedDates = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(HotelPageLocators.DATEPICKER_ACTIVE_DAY));
         List<String> dates = selectedDates.stream()
-                .map(e -> e.getAttribute("title"))
+                .map(e -> e.getDomAttribute("title"))
                 .collect(Collectors.toList());
 
         BrowserUtils.findElement(HotelPageLocators.HOTEL_DATEPICKER_POPOVER_BUTTON).click();
@@ -102,7 +102,7 @@ public class EndToEndHotelBookingSteps {
             System.out.println("child ages: " + childsAge);
         }
 
-        String isValue = BrowserUtils.findElement(HotelPageLocators.HOTEL_POPOVER_BUTTON).getAttribute("value");
+        String isValue = BrowserUtils.findElement(HotelPageLocators.HOTEL_POPOVER_BUTTON).getDomAttribute("value");
 
         if(child.isEmpty()){
             Assert.assertEquals(justAdultText,isValue);
@@ -225,7 +225,7 @@ public class EndToEndHotelBookingSteps {
 
     public void navigateToCheckInMonth(String checkinDate){
         List<WebElement> nowDate = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(HotelPageLocators.BUTTON_DATA_DAY_1));
-        String NowDateAttribute = nowDate.get(0).getAttribute("title");
+        String NowDateAttribute = nowDate.get(0).getDomAttribute("title");
 
         String[] checkInDates = checkinDate.split("-");
         String[] checkNowDate = NowDateAttribute.split("-");
@@ -247,7 +247,7 @@ public class EndToEndHotelBookingSteps {
 
 
             List<WebElement> nowDates = BrowserUtils.findElements(HotelPageLocators.BUTTON_DATA_DAY_1);
-            String testIdValues = nowDates.get(0).getAttribute("title");
+            String testIdValues = nowDates.get(0).getDomAttribute("title");
             String[] parts2 = testIdValues.split("-");
             yearNow = parts2[0];
             monthNow = parts2[1];

@@ -1,6 +1,5 @@
 package analysis;
 
-import java.util.List;
 
 class Flight {
     String airline;
