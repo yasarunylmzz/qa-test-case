@@ -4,15 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.BrowserUtils;
 import utilities.DriverManager;
 
-import java.time.Duration;
 import java.util.List;
-
-import static utilities.DriverManager.driver;
 
 public class HomePage {
     private final WebDriver driver;
@@ -91,7 +86,7 @@ public class HomePage {
             System.out.println("isSelected: " + isSelected);
 
             if (isSelected) {
-                List<WebElement> label = driver.findElements(oneWayCheckboxLabel);
+                List<WebElement> label = BrowserUtils.findElements(oneWayCheckboxLabel);
                 label.get(1).click();
             }
         }
@@ -99,7 +94,7 @@ public class HomePage {
 
 
     public void moveToTargetMonth( String dateValue, String route){
-        List<WebElement> dateElements = driver.findElements(By.xpath("//button[@data-testid='datepicker-active-day']"));
+        List<WebElement> dateElements = BrowserUtils.findElements(By.xpath("//button[@data-testid='datepicker-active-day']"));
         String testIdValue = dateElements.get(0).getAttribute("title");
 
         String[] parts = testIdValue.split("-");

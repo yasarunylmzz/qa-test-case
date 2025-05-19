@@ -1,6 +1,5 @@
 package pages;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +27,7 @@ public class FilteredFlightPage {
                 .click();
 
 
-        List<WebElement> showMoreButtons = driver.findElements(By.xpath("//div[@class='filter-show-more']"));
+        List<WebElement> showMoreButtons = BrowserUtils.findElements(By.xpath("//div[@class='filter-show-more']"));
         if (!showMoreButtons.isEmpty()) {
             WebElement showMoreButton = showMoreButtons.get(0);
             if (showMoreButton.isDisplayed()) {
@@ -37,7 +36,7 @@ public class FilteredFlightPage {
         }
 
 
-        driver.findElement(By.xpath("//label[@for='TKairlines']"))
+        BrowserUtils.findElement(By.xpath("//label[@for='TKairlines']"))
                 .click();
     }
 
@@ -60,10 +59,10 @@ public class FilteredFlightPage {
 
     public void allFlightIsAscendingOrder(){
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='filter-loading']")));
-        WebElement ascendingButton = driver.findElement(By.xpath("//div[@data-testid='sortButtons0']"));
+        WebElement ascendingButton = BrowserUtils.findElement(By.xpath("//div[@data-testid='sortButtons0']"));
         ascendingButton.click();
 
-        List<WebElement> priceElements = driver.findElements(By.xpath("//div[@data-testid='flightInfoPrice']"));
+        List<WebElement> priceElements = BrowserUtils.findElements(By.xpath("//div[@data-testid='flightInfoPrice']"));
         List<Double> prices = new ArrayList<>();
         for (WebElement priceEl : priceElements) {
             String priceText = priceEl.getAttribute("data-price"); // örnek: "2076.99"

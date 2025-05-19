@@ -187,7 +187,7 @@ public class EndToEndHotelBookingSteps {
         // card month
         BrowserUtils.findElement(HotelPageLocators.CARD_MONTH_INPUT).click();
 
-        List<WebElement> monthOption = driver.findElements(By.xpath("//button[starts-with(@data-testid, 'cardMonth-option-')]"));
+        List<WebElement> monthOption = BrowserUtils.findElements(By.xpath("//button[starts-with(@data-testid, 'cardMonth-option-')]"));
         for (WebElement month : monthOption) {
             if (month.getText().equals(expiryMonth)) {
                 month.click();
@@ -199,7 +199,7 @@ public class EndToEndHotelBookingSteps {
         WebElement yearDropdown = BrowserUtils.findElement(HotelPageLocators.CARD_YEAR_INPUT_BOX);
         yearDropdown.click();
 
-        List<WebElement> yearOptions = driver.findElements(By.xpath("//button[starts-with(@data-testid, 'cardYear-option-')]"));
+        List<WebElement> yearOptions = BrowserUtils.findElements(By.xpath("//button[starts-with(@data-testid, 'cardYear-option-')]"));
 
         for (WebElement option : yearOptions) {
             if (option.getText().trim().equals(expiryYear)) {
@@ -246,7 +246,7 @@ public class EndToEndHotelBookingSteps {
             rightClick.click();
 
 
-            List<WebElement> nowDates = driver.findElements(HotelPageLocators.BUTTON_DATA_DAY_1);
+            List<WebElement> nowDates = BrowserUtils.findElements(HotelPageLocators.BUTTON_DATA_DAY_1);
             String testIdValues = nowDates.get(0).getAttribute("title");
             String[] parts2 = testIdValues.split("-");
             yearNow = parts2[0];

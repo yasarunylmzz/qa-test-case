@@ -2,16 +2,10 @@ package steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CSVPage;
 import pages.HomePage;
-import utilities.DriverManager;
 import utilities.FlightData;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import utilities.ScreenShotUtil;

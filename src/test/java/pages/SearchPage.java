@@ -9,8 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.BrowserUtils;
 import utilities.DriverManager;
+import pages.locators.SearchPageLocators;
 
-import java.time.Duration;
 import java.util.List;
 
 public class SearchPage {
@@ -25,49 +25,40 @@ public class SearchPage {
         this.actions = new Actions(driver);
     }
 
-    private final By departureTimeFilterButton = By.xpath("//div[@class='ctx-filter-departure-return-time card-header']");
-    private final By sliderStep = By.className("rc-slider-step");
-    private final By sliderLeftHandle = By.cssSelector(".rc-slider-handle.rc-slider-handle-1");
-    private final By sliderRightHandle = By.cssSelector(".rc-slider-handle.rc-slider-handle-2");
-    private final By filterLoading = By.xpath("//div[@class='filter-loading']");
-    private final By filterSliderContent = By.xpath("//div[@class='filter-slider-content']");
-    private final By flightListDiv = By.xpath("//div[@class='flight-list flight-list-departure    domesticList']");
-    private final By flights = By.xpath("//div[@data-flight-index]");
-
 
 
     public void openDepartureTimeFilter() {
-        wait.until(ExpectedConditions.elementToBeClickable(departureTimeFilterButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(SearchPageLocators.departureTimeFilterButton)).click();
     }
 
     public void setDepartureTimeRange(int departureTime, int returnTime) {
-        WebElement step = driver.findElement(sliderStep);
+        WebElement step = BrowserUtils.findElement(SearchPageLocators.sliderStep);
         int width = step.getSize().getWidth();
 
         int offsetStart = (width / 24) * departureTime;
         int offsetEnd = (width / 24) * returnTime;
 
-        WebElement leftHandle = driver.findElement(sliderLeftHandle);
+        WebElement leftHandle = BrowserUtils.findElement(SearchPageLocators.sliderLeftHandle);
         actions.clickAndHold(leftHandle).moveByOffset(offsetStart, 0).release().perform();
 
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(filterLoading));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(SearchPageLocators.filterLoading));
 
-        WebElement rightHandle = driver.findElement(sliderRightHandle);
+        WebElement rightHandle = BrowserUtils.findElement(SearchPageLocators.sliderRightHandle);
         actions.dragAndDropBy(rightHandle, -(width - offsetEnd), 0).perform();
     }
 
     public void isCorrectTime (int departureTime, int returnTime) {
-        WebElement testIsOk = BrowserUtils.findElement(filterSliderContent);
+        WebElement testIsOk = BrowserUtils.findElement(SearchPageLocators.filterSliderContent);
 
         String expectedText = String.format("%02d:%02d ile %02d:%02d arası", departureTime, 0, returnTime, 0);
         Assert.assertEquals(expectedText, testIsOk.getText());
     }
 
     public void flightListIsAvailable() {
-        WebElement flightList = BrowserUtils.findElement(flightListDiv);
+        WebElement flightList = BrowserUtils.findElement(SearchPageLocators.flightListDiv);
         Assert.assertTrue( flightList.isDisplayed());
 
-        List<WebElement> flight = BrowserUtils.findElements(flights);
+        List<WebElement> flight = BrowserUtils.findElements(SearchPageLocators.flights);
         Assert.assertFalse("Uçuş listesi boş!", flight.isEmpty());
     }
 
