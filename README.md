@@ -65,8 +65,7 @@ com.testcase/
 ### 1. **From IDE**
 
 - Right-click on `TestRunner.java`
-- Edit @CucumberOptions --> edit this "features = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/src/test/java/resource/features/**_Case4_DataExtraction_**.feature", // .feature dosyalarının yolu
-  " and select "Run".
+- Edit @CucumberOptions --> edit this "features = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/src/test/java/resource/features/**_Case4_DataExtraction_**.feature"," and select "Run".
 
 ### 2. **From Terminal**
 
