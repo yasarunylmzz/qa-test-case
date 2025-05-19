@@ -1,52 +1,21 @@
 package steps;
 
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.After;
-
-import io.cucumber.java.Before;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
-
 import pages.HomePage;
 import pages.SearchPage;
-import utilities.ConfigurationReader;
-import utilities.DriverManager;
-import utilities.ScreenShotUtil;
+import utilities.BrowserUtils;
+
+
 
 public class Case1Steps {
-    WebDriver driver = DriverManager.getDriver();
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(45));
     SearchPage searchPage = new SearchPage();
     HomePage homePage = new HomePage();
-    ScreenShotUtil screenShotUtil = new utilities.ScreenShotUtil();
-
-    @Before
-    @Given("I am on the Enuygun homepage")
-    public void setUp() {
-        String browser = ConfigurationReader.getProperty("browser");
-        System.setProperty("browser", browser);
-
-        String url = ConfigurationReader.getProperty("url");
-        driver.manage().window().maximize();
-        driver.get(url);
-
-
-    }
-
+    BrowserUtils browserUtils = new BrowserUtils();
 
     @When("I search for a round-trip flight from {string} to {string}")
     public void iSearchForARoundTripFlightFromToCity(String fromCity, String toCity) {
-
 
         homePage.enterFromCity(fromCity);
 
@@ -73,11 +42,7 @@ public class Case1Steps {
 
         homePage.returnPicker(returnDate);
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        browserUtils.sleepFunc(2);
 
         homePage.clickOneWayCheckbox();
 

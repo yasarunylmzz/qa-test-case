@@ -9,9 +9,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.BrowserUtils;
 import utilities.DriverManager;
-
-import java.time.Duration;
-
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,28 +19,29 @@ public class EndToEndHotelBookingSteps {
 
     public EndToEndHotelBookingSteps() {
         this.driver = DriverManager.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = DriverManager.getWait();
     }
 
     public void hotelSearch() {
-        BrowserUtils.findElement(driver,By.xpath("//a[@data-testid='header-nav-links-1']"),10).click();
+        BrowserUtils.findElement(By.xpath("//a[@data-testid='header-nav-links-1']")).click();
+
         String currentUrl = driver.getCurrentUrl();
         assert currentUrl != null;
         Assert.assertTrue(currentUrl.contains("https://www.enuygun.com/otel/"));
     }
 
     public void hotelSelect(String location){
-        BrowserUtils.findElement(driver,By.xpath("//input[@data-testid='endesign-hotel-autosuggestion-input']"),10).sendKeys(location);
+        BrowserUtils.findElement(By.xpath("//input[@data-testid='endesign-hotel-autosuggestion-input']")).sendKeys(location);
 
-        BrowserUtils.findElement(driver,By.xpath("//li[@data-testid='endesign-hotel-autosuggestion-option-item-0']"),30).click();
+        BrowserUtils.findElement(By.xpath("//li[@data-testid='endesign-hotel-autosuggestion-option-item-0']")).click();
     }
 
     public void checkInCheckOut(String checkin, String checkout) {
-        BrowserUtils.findElement(driver,By.xpath("//div[@data-testid='hotel-datepicker-popover-button']"),10).click();
+        BrowserUtils.findElement(By.xpath("//div[@data-testid='hotel-datepicker-popover-button']")).click();
         navigateToCheckInMonth(checkin);
-        BrowserUtils.findElement(driver,By.xpath("//button[@title='"+checkin+"']"),10).click();
-        BrowserUtils.findElement(driver,By.xpath("//button[@title='"+checkout+"']"),10).click();
-        BrowserUtils.findElement(driver,By.xpath("//div[@data-testid='hotel-datepicker-popover-button']"),10).click();
+        BrowserUtils.findElement(By.xpath("//button[@title='"+checkin+"']")).click();
+        BrowserUtils.findElement(By.xpath("//button[@title='"+checkout+"']")).click();
+        BrowserUtils.findElement(By.xpath("//div[@data-testid='hotel-datepicker-popover-button']")).click();
 
 
         List<WebElement> selectedDates = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//button[@data-testid='datepicker-active-day']")));
@@ -51,7 +49,7 @@ public class EndToEndHotelBookingSteps {
                 .map(e -> e.getAttribute("title"))
                 .collect(Collectors.toList());
 
-        BrowserUtils.findElement(driver,By.xpath("//div[@data-testid='hotel-datepicker-popover-button']"),10).click();
+        BrowserUtils.findElement(By.xpath("//div[@data-testid='hotel-datepicker-popover-button']")).click();
 
 
         Assert.assertTrue(dates.contains(checkin));
@@ -60,7 +58,7 @@ public class EndToEndHotelBookingSteps {
 
     public void setGuestAndSetChild(String adult, String child, String childsAge){
         // adult guest button
-        BrowserUtils.waitForClickability(driver,By.xpath("//div[@data-testid='hotel']"),10).click();
+        BrowserUtils.waitForClickability(By.xpath("//div[@data-testid='hotel']")).click();
 
 
         String childAndAdultText = adult + " Yetişkin, " + child + " Çocuk," + " 1 Oda";
@@ -68,7 +66,7 @@ public class EndToEndHotelBookingSteps {
         int childInt = Integer.parseInt(child);
 
         //adult
-        HotelSearchPage.adjustGuestCount(
+        adjustGuestCount(
                 wait,
                 Integer.parseInt(adult),
                 By.xpath("//div[@data-testid='hotel-adult-counter-count']"),
@@ -77,7 +75,7 @@ public class EndToEndHotelBookingSteps {
         );
 
         //child
-        HotelSearchPage.adjustGuestCount(
+        adjustGuestCount(
                 wait,
                 Integer.parseInt(child),
                 By.xpath("//div[@data-testid='hotel-child-counter-count']"),
@@ -102,7 +100,7 @@ public class EndToEndHotelBookingSteps {
             System.out.println("child ages: " + childsAge);
         }
 
-        String isValue = BrowserUtils.findElement(driver,By.xpath("//input[@data-testid='hotel-popover-button']"),10).getAttribute("value");
+        String isValue = BrowserUtils.findElement(By.xpath("//input[@data-testid='hotel-popover-button']")).getAttribute("value");
 
         if(child.isEmpty()){
             Assert.assertEquals(justAdultText,isValue);
@@ -112,7 +110,7 @@ public class EndToEndHotelBookingSteps {
     }
 
     public void SubmitButton(){
-        BrowserUtils.findElement(driver,By.xpath("//button[@data-testid='hotel-submit-search-button']"),10).click();
+        BrowserUtils.findElement(By.xpath("//button[@data-testid='hotel-submit-search-button']")).click();
         WebElement cityIsCorrect = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//h3[@data-testid='hotel-result-title']")
         ));
@@ -120,9 +118,9 @@ public class EndToEndHotelBookingSteps {
     }
 
     public void hotelPricesAscendingOrder(){
-        BrowserUtils.findElement(driver,By.xpath("//button[@data-testid='sort-fiyat-artan-button']"),10).click();
+        BrowserUtils.findElement(By.xpath("//button[@data-testid='sort-fiyat-artan-button']")).click();
 
-        List<WebElement> hotels = BrowserUtils.findElements(driver,By.xpath("//div[@data-testid='result-available-hotel']"),10);
+        List<WebElement> hotels = BrowserUtils.findElements(By.xpath("//div[@data-testid='result-available-hotel']"));
         WebElement hotelNameElement = hotels.get(0).findElement(By.xpath(".//h4[@data-testid='result-title']"));
         String hotelName = hotelNameElement.getText();
         hotels.get(0).click();
@@ -147,7 +145,7 @@ public class EndToEndHotelBookingSteps {
 
     public void verifyHotelAndBookRoomButton() {
         //offer radio buttons
-        BrowserUtils.findElements(driver,By.xpath("//div[@data-testid='offer-item-container']"),10).get(0).click();;
+        BrowserUtils.findElements(By.xpath("//div[@data-testid='offer-item-container']")).get(0).click();;
 
         //book a room buttons
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//button[@data-testid='offer-select-room-button']"))).get(0).click();
@@ -155,37 +153,37 @@ public class EndToEndHotelBookingSteps {
 
     public void guessDetails(String firstName, String lastName, String email, String phone, String gender) {
         // email fields
-        BrowserUtils.findElement(driver,By.xpath("//input[@data-testid='contact-email']"),10).sendKeys(email);
+        BrowserUtils.findElement(By.xpath("//input[@data-testid='contact-email']")).sendKeys(email);
 
         // phone fields
-        BrowserUtils.findElement(driver,By.xpath("//input[@data-testid='contactPhone']"),10).sendKeys(phone);
+        BrowserUtils.findElement(By.xpath("//input[@data-testid='contactPhone']")).sendKeys(phone);
 
         // firstname fields
-        List<WebElement> names = BrowserUtils.findElements(driver, By.xpath("//input[@data-testid='room-first-name']"), 10);
+        List<WebElement> names = BrowserUtils.findElements( By.xpath("//input[@data-testid='room-first-name']"));
 
         for (WebElement element : names) {
             element.sendKeys(firstName);
         }
 
         // lastname fields
-        List<WebElement> lastNames = BrowserUtils.findElements(driver,By.xpath("//input[@data-testid='room-last-name']"),10);
+        List<WebElement> lastNames = BrowserUtils.findElements(By.xpath("//input[@data-testid='room-last-name']"));
         for (WebElement element : lastNames) {
             element.sendKeys(lastName);
         }
 
         // gender fields
-        BrowserUtils.findElement(driver,By.xpath("//label[@data-testid='"+gender+"-label']"),10).click();
+        BrowserUtils.findElement(By.xpath("//label[@data-testid='"+gender+"-label']")).click();
 
         // click button
-        BrowserUtils.findElement(driver,By.xpath("//button[@data-testid='reservation-form-submit-button']"),10).click();
+        BrowserUtils.findElement(By.xpath("//button[@data-testid='reservation-form-submit-button']")).click();
     }
 
     public void cardDetails(String number, String expiryMonth, String expiryYear, String CVV) {
         // card number
-        BrowserUtils.findElement(driver,By.xpath("//input[@data-testid='cardNumber']"),10).sendKeys(number);
+        BrowserUtils.findElement(By.xpath("//input[@data-testid='cardNumber']")).sendKeys(number);
 
         // card month
-        BrowserUtils.findElement(driver,By.xpath("//input[@data-testid='cardMonth-input']"),10).click();
+        BrowserUtils.findElement(By.xpath("//input[@data-testid='cardMonth-input']")).click();
 
         List<WebElement> monthOption = driver.findElements(By.xpath("//button[starts-with(@data-testid, 'cardMonth-option-')]"));
         for (WebElement month : monthOption) {
@@ -196,7 +194,7 @@ public class EndToEndHotelBookingSteps {
         }
 
         // card year
-        WebElement yearDropdown = BrowserUtils.findElement(driver, By.xpath("//span[@data-testid='cardYear-input-box']"), 10);
+        WebElement yearDropdown = BrowserUtils.findElement(By.xpath("//span[@data-testid='cardYear-input-box']"));
         yearDropdown.click();
 
         List<WebElement> yearOptions = driver.findElements(By.xpath("//button[starts-with(@data-testid, 'cardYear-option-')]"));
@@ -209,14 +207,14 @@ public class EndToEndHotelBookingSteps {
         }
 
         // card cvv
-        BrowserUtils.findElement(driver,By.xpath("//input[@data-testid='CVV']"),10).sendKeys(CVV);
+        BrowserUtils.findElement(By.xpath("//input[@data-testid='CVV']")).sendKeys(CVV);
 
 
         // card submit button
-        BrowserUtils.waitForClickability(driver,By.xpath("//button[@data-testid='payment-form-submit-button']"),20).click();
+        BrowserUtils.waitForClickability(By.xpath("//button[@data-testid='payment-form-submit-button']")).click();
 
         // payment screen is displayed
-        WebElement waitingMessage = BrowserUtils.findElement(driver,By.xpath("//div[@data-testid='[unnamed]-alert-body']"),20);
+        WebElement waitingMessage = BrowserUtils.findElement(By.xpath("//div[@data-testid='[unnamed]-alert-body']"));
         Assert.assertEquals(waitingMessage.getText(),"İşlem başarısız, lütfen başka bir kart ile tekrar deneyin.");
     }
 
@@ -252,6 +250,23 @@ public class EndToEndHotelBookingSteps {
 
             yearNowInt = Integer.parseInt(yearNow);
             monthNowInt = Integer.parseInt(monthNow);
+        }
+    }
+
+    public static void adjustGuestCount(WebDriverWait wait,int desiredCount, By countLocator, By plusButtonLocator, By minusButtonLocator) {
+        WebElement countElement = wait.until(ExpectedConditions.visibilityOfElementLocated(countLocator));
+        int currentCount = Integer.parseInt(countElement.getText());
+
+        WebElement plusButton = wait.until(ExpectedConditions.elementToBeClickable(plusButtonLocator));
+        WebElement minusButton = wait.until(ExpectedConditions.elementToBeClickable(minusButtonLocator));
+        while (currentCount < desiredCount) {
+            plusButton.click();
+            currentCount++;
+        }
+
+        while (currentCount > desiredCount) {
+            minusButton.click();
+            currentCount--;
         }
     }
 }

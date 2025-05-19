@@ -21,7 +21,7 @@ public class SearchPage {
 
     public SearchPage() {
         this.driver = DriverManager.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        this.wait = DriverManager.getWait();
         this.actions = new Actions(driver);
     }
 
@@ -57,22 +57,22 @@ public class SearchPage {
     }
 
     public void isCorrectTime (int departureTime, int returnTime) {
-        WebElement testIsOk = BrowserUtils.findElement(driver,filterSliderContent,10);
+        WebElement testIsOk = BrowserUtils.findElement(filterSliderContent);
 
         String expectedText = String.format("%02d:%02d ile %02d:%02d arası", departureTime, 0, returnTime, 0);
         Assert.assertEquals(expectedText, testIsOk.getText());
     }
 
     public void flightListIsAvailable() {
-        WebElement flightList = BrowserUtils.findElement(driver,flightListDiv,10);
+        WebElement flightList = BrowserUtils.findElement(flightListDiv);
         Assert.assertTrue( flightList.isDisplayed());
 
-        List<WebElement> flight = BrowserUtils.findElements(driver,flights,10);
+        List<WebElement> flight = BrowserUtils.findElements(flights);
         Assert.assertFalse("Uçuş listesi boş!", flight.isEmpty());
     }
 
     public void routeIsCorrect (String fromCity,String toCity){
-        WebElement element = BrowserUtils.findElement(driver,By.xpath("//div[@class='form-header active']//strong[@class='graphic-strong']"),20);
+        WebElement element = BrowserUtils.findElement(By.xpath("//div[@class='form-header active']//strong[@class='graphic-strong']"));
         String text = "";
         if(element.isDisplayed()) {
             text = element.getText().trim();

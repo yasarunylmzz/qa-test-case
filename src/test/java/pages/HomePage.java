@@ -16,15 +16,11 @@ import static utilities.DriverManager.driver;
 
 public class HomePage {
     private final WebDriver driver;
-    private final WebDriverWait wait;
 
     // Constructor
     public HomePage() {
         this.driver = DriverManager.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
-
-
 
     private final By roundTripLabel = By.xpath("//label[@data-testid='search-round-trip-label']");
     private final By fromCityInput = By.xpath("//input[@data-testid='endesign-flight-origin-autosuggestion-input']");
@@ -39,50 +35,50 @@ public class HomePage {
 
 
     public void selectRoundTrip(){
-        BrowserUtils.waitForClickability(driver, roundTripLabel, 10).click();
+        BrowserUtils.waitForClickability(roundTripLabel).click();
     }
 
     public void enterFromCity(String fromCity){
-        WebElement fromInput = BrowserUtils.waitForClickability(driver, fromCityInput, 10);
+        WebElement fromInput = BrowserUtils.waitForClickability(fromCityInput);
         fromInput.clear();
         fromInput.sendKeys(fromCity);
-        BrowserUtils.waitForClickability(driver, firstToCityOption, 10);
+        BrowserUtils.waitForClickability(firstToCityOption);
         fromInput.sendKeys(org.openqa.selenium.Keys.ENTER);
     }
 
     public void enterToCity(String toCity){
-        WebElement toInput = BrowserUtils.waitForClickability(driver, toCityInput, 10);
+        WebElement toInput = BrowserUtils.waitForClickability(toCityInput);
         toInput.clear();
         toInput.sendKeys(toCity);
-        BrowserUtils.waitForClickability(driver, secondToCityOption, 10);
+        BrowserUtils.waitForClickability(secondToCityOption);
         toInput.sendKeys(Keys.ENTER);
     }
 
 
     public void activeDayPickerIsAvailable(){
-        BrowserUtils.waitForPresence(driver,By.xpath("//button[@data-testid='datepicker-active-day']"),10);
+        BrowserUtils.waitForPresence(By.xpath("//button[@data-testid='datepicker-active-day']"));
 
     }
 
     public void clickDepartureDate(){
-        BrowserUtils.waitForClickability(driver, departureDateButton, 10).click();
+        BrowserUtils.waitForClickability(departureDateButton).click();
     }
 
     public void clickReturnDate() {
-        BrowserUtils.waitForClickability(driver, returnDateInput, 10).click();
+        BrowserUtils.waitForClickability(returnDateInput).click();
     }
 
     public void clickSearchButton() {
-        BrowserUtils.waitForClickability(driver, searchButton, 10).click();
+        BrowserUtils.waitForClickability(searchButton).click();
     }
     public void departurePicker(String departureDate){
         final By departurePicker = By.xpath("//button[@title='" + departureDate + "']");
-        BrowserUtils.waitForClickability(driver, departureDateButton, 10).click();
+        BrowserUtils.waitForClickability(departureDateButton).click();
     }
 
     public void returnPicker(String returnDate){
         final By returnPicker = By.xpath("//button[@title='" + returnDate + "']");
-        BrowserUtils.waitForClickability(driver, returnPicker, 10).click();
+        BrowserUtils.waitForClickability(returnPicker).click();
     }
 
     public void clickOneWayCheckbox() {
@@ -120,11 +116,11 @@ public class HomePage {
         int monthInt = Integer.parseInt(month);
 
         while(yearInt > yearNowInt || (yearInt == yearNowInt && monthInt > monthNowInt)) {
-            WebElement rightClick = BrowserUtils.waitForClickability(driver,By.xpath("//button[@data-testid='enuygun-homepage-flight-"+route+"-month-forward-button']"),25);
+            WebElement rightClick = BrowserUtils.waitForClickability(By.xpath("//button[@data-testid='enuygun-homepage-flight-"+route+"-month-forward-button']"));
             rightClick.click();
 
 
-            List<WebElement> nowDates = BrowserUtils.findElements(driver,By.xpath("//div[@data-testid='enuygun-homepage-flight-"+route+"-datepicker-calendar-month']"),20);
+            List<WebElement> nowDates = BrowserUtils.findElements(By.xpath("//div[@data-testid='enuygun-homepage-flight-"+route+"-datepicker-calendar-month']"));
             String testIdValues = nowDates.get(0).getAttribute("id");
             String[] parts2 = testIdValues.split("-");
             yearNow = parts2[2];

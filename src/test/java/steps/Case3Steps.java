@@ -10,9 +10,6 @@ import pages.EndToEndHotelBookingSteps;
 public class Case3Steps {
     EndToEndHotelBookingSteps endToEndHotelBookingSteps = new EndToEndHotelBookingSteps();
 
-    @Before
-    public void setUp() {}
-
 
     @And("I navigate to the Hotel search section")
     public void iNavigateToTheHotelSearchSection() {

@@ -21,10 +21,10 @@ public class FilteredFlightPage {
 
 
     public void filterFlight(){
-        BrowserUtils.findElement(driver,By.xpath("//div[@class='filter-loading']"),10);
-        BrowserUtils.waitForElementToDisappear(driver,By.className("filter-loading-effect"), 20);
+        BrowserUtils.findElement(By.xpath("//div[@class='filter-loading']"));
+        BrowserUtils.waitForElementToDisappear(By.className("filter-loading-effect"));
 
-        BrowserUtils.waitForClickability(driver,By.xpath("//div[@class='filter-card card']//div[@class='ctx-filter-airline card-header']"),20)
+        BrowserUtils.waitForClickability(By.xpath("//div[@class='filter-card card']//div[@class='ctx-filter-airline card-header']"))
                 .click();
 
 
@@ -42,8 +42,8 @@ public class FilteredFlightPage {
     }
 
     public void allFlightsIsCorrect(){
-        BrowserUtils.waitForElementToDisappear(driver,By.xpath("//div[@class='filter-loading']"),10);
-        List<WebElement> airlines = BrowserUtils.waitForPresenceAllElement(driver,By.xpath("//div[@class='summary-marketing-airlines ']"),20);
+        BrowserUtils.waitForElementToDisappear(By.xpath("//div[@class='filter-loading']"));
+        List<WebElement> airlines = BrowserUtils.waitForPresenceAllElement(By.xpath("//div[@class='summary-marketing-airlines ']"));
         boolean allTurkishAirlines = true;
 
         System.out.println(airlines.get(0).getText());
