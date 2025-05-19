@@ -28,7 +28,7 @@ public class FilteredFlightPage {
                 .click();
 
 
-        List<WebElement> showMoreButtons = BrowserUtils.findElements(FilteredFlightLocators.FILTER_SHOW_MORE);
+        List<WebElement> showMoreButtons = driver.findElements(FilteredFlightLocators.FILTER_SHOW_MORE);
         if (!showMoreButtons.isEmpty()) {
             WebElement showMoreButton = showMoreButtons.get(0);
             if (showMoreButton.isDisplayed()) {

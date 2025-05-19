@@ -38,7 +38,7 @@ public class BrowserUtils {
          return DriverManager.getWait().until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
 
-    public void sleepFunc(int seconds)
+    public static void sleepFunc(int seconds)
     {
         try {
             Thread.sleep(seconds * 1000);

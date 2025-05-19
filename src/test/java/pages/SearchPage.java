@@ -32,7 +32,7 @@ public class SearchPage {
     }
 
     public void setDepartureTimeRange(int departureTime, int returnTime) {
-        WebElement step = BrowserUtils.findElement(SearchPageLocators.SLIDER_STEP);
+        WebElement step = driver.findElement(SearchPageLocators.SLIDER_STEP);
         int width = step.getSize().getWidth();
 
         int offsetStart = (width / 24) * departureTime;
