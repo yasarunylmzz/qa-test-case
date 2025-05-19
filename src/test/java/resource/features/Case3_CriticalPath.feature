@@ -9,7 +9,7 @@ Feature: Hotel search on Enuygun
     And I click the Find Hotel button
     Then hotel prices should be sorted in ascending order the hotel detail tab should open
     And the hotel name should match between tabs and the Book a Room button should be visible
-    And I fill in the payment details with first name "<firstName>", last name "<lastName>", email "<email>", phone "<phone>", and gender "<gender>"
+    And I fill in the Guest details with first name "<firstName>", last name "<lastName>", email "<email>", phone "<phone>", and gender "<gender>"
     And I enter the card information with number "<cardNumber>", expiry month "<expiryMonth>", expiry year "<expiryYear>", and CVV "<cvv>"
 
     Examples:

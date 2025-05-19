@@ -11,19 +11,19 @@ import java.util.List;
 
 public class BrowserUtils {
 
-    public static void waitForVisibility(WebDriver driver, WebElement element, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-        wait.until(ExpectedConditions.visibilityOf(element));
-    }
-
     public static WebElement waitForClickability(WebDriver driver, By locator, int timeout) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public static void waitForPresence(WebDriver driver, By locator, int timeout) {
+    public static WebElement waitForPresence(WebDriver driver, By locator, int timeout) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
+    public static List<WebElement> waitForPresenceAllElement(WebDriver driver, By locator, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
     }
 
     public static WebElement findElement(WebDriver driver, By locator, int timeout) {
@@ -34,5 +34,10 @@ public class BrowserUtils {
     public static List<WebElement> findElements(WebDriver driver, By locator, int timeout) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+    }
+
+    public static Boolean waitForElementToDisappear(WebDriver driver, By by, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(timeout));
+         return wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
 }

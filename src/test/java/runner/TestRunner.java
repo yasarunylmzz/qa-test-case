@@ -7,8 +7,8 @@ import steps.Case1Steps;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/src/test/java/resource/features/Case3_CriticalPath.feature",   // .feature dosyalarının yolu
-        glue = "steps",                             // Step definition klasörü
+        features = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/src/test/java/resource/features/Case2_PriceSort.feature",   // .feature dosyalarının yolu
+        glue = {"steps","hooks"},                             // Step definition klasörü
         plugin = {
                 "pretty",
                 "html:target/cucumber-report.html"      // Rapor çıktısı

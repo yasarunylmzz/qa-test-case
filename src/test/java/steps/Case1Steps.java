@@ -1,5 +1,6 @@
 package steps;
 
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -20,12 +21,14 @@ import pages.HomePage;
 import pages.SearchPage;
 import utilities.ConfigurationReader;
 import utilities.DriverManager;
+import utilities.ScreenShotUtil;
 
 public class Case1Steps {
     WebDriver driver = DriverManager.getDriver();
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(45));
     SearchPage searchPage = new SearchPage();
     HomePage homePage = new HomePage();
+    ScreenShotUtil screenShotUtil = new utilities.ScreenShotUtil();
 
     @Before
     @Given("I am on the Enuygun homepage")
@@ -36,6 +39,7 @@ public class Case1Steps {
         String url = ConfigurationReader.getProperty("url");
         driver.manage().window().maximize();
         driver.get(url);
+
 
     }
 
@@ -57,7 +61,7 @@ public class Case1Steps {
 
         homePage.clickDepartureDate();
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@data-testid='datepicker-active-day']")));
+        homePage.activeDayPickerIsAvailable();
 
         homePage.moveToTargetMonth(departureDate, "departureDate");
 
@@ -105,10 +109,6 @@ public class Case1Steps {
         searchPage.routeIsCorrect(fromCity,toCity);
     }
 
-    @After
-    public void tearDown() {
-        DriverManager.quitDriver();
-    }
 
 
 }

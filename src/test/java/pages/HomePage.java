@@ -58,6 +58,12 @@ public class HomePage {
         toInput.sendKeys(Keys.ENTER);
     }
 
+
+    public void activeDayPickerIsAvailable(){
+        BrowserUtils.waitForPresence(driver,By.xpath("//button[@data-testid='datepicker-active-day']"),10);
+
+    }
+
     public void clickDepartureDate(){
         BrowserUtils.waitForClickability(driver, departureDateButton, 10).click();
     }
