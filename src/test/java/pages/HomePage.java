@@ -59,12 +59,7 @@ public class HomePage {
 
     public void clickSearchButton() {
         BrowserUtils.waitForClickability(HomePageLocators.SEARCH_BUTTON).click();
-         WebElement originError = BrowserUtils.waitForPresence(HomePageLocators.ORIGIN_ERROR);
-        if (originError.isDisplayed()) {
-            logger.info("Origin error message is displayed: " + originError.getText());
-        } else {
-            logger.info("Origin error message is not displayed.");
-        }
+
     }
     public void departurePicker(String departureDate){
         // final By departurePicker = By.xpath("//button[@title='" + departureDate + "']");
