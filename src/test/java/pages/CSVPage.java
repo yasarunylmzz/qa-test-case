@@ -71,7 +71,7 @@ public class CSVPage {
     public void saveAllFlightsInCSV(String toCity, String fromCity){
         String toLowerCase =  toCity.toLowerCase();
         String fromCityCase = fromCity.toLowerCase();
-        String csvFileName = "flights_" + toLowerCase + "_" + fromCityCase + ".csv";
+        String csvFileName = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/data/flights_" + toLowerCase + "_" + fromCityCase + ".csv";
         logger.info("CSV file name: " + csvFileName);
         try (FileWriter writer = new FileWriter(csvFileName)) {
             writer.append("DepartureTime,ArrivalTime,AirlineName,Price,ConnectionInfo,Duration\n");

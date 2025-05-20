@@ -1,0 +1,119 @@
+DepartureTime,ArrivalTime,AirlineName,Price,ConnectionInfo,Duration
+09:25,11:25,AJet,2027,0,180
+10:15,12:10,Pegasus,2042,0,175
+13:30,15:25,Pegasus,2042,0,175
+16:40,18:35,Pegasus,2423,0,175
+07:15,18:00,Pegasus,4015,1,705
+06:30,18:00,Pegasus,4015,1,750
+05:45,18:00,Pegasus,4015,1,795
+07:30,09:20,Türk Hava Yolları,4943,0,170
+10:05,11:55,Türk Hava Yolları,4943,0,170
+12:40,14:35,Türk Hava Yolları,5857,0,175
+15:50,17:45,Türk Hava Yolları,5857,0,175
+08:50,18:00,Pegasus,5868,1,610
+21:10,11:00,Pegasus,6566,1,890
+20:00,11:00,Pegasus,6566,1,960
+10:55,18:00,Pegasus,8806,1,485
+19:10,21:05,Türk Hava Yolları,8871,0,175
+15:40,19:30,Air Serbia,9164,1,290
+15:40,08:40,Air Serbia,9164,1,1080
+04:35,10:35,Aegean Airlines,9579,1,420
+04:35,10:35,Aegean Airlines,9579,1,420
+15:40,19:30,Air Serbia,10684,1,290
+21:20,09:05,Norwegian Air Shuttle,11057,1,765
+15:45,10:35,Azerbaijan Airlines,11625,1,1190
+10:30,10:35,Azerbaijan Airlines,11625,1,1505
+20:50,10:35,Aegean Airlines,11666,1,885
+20:50,10:35,Aegean Airlines,11666,1,885
+04:35,19:45,Aegean Airlines,11666,1,970
+15:40,19:00,Air Baltic,11790,1,1700
+15:40,19:00,Air Baltic,11790,1,1700
+22:50,10:35,Azerbaijan Airlines,11848,1,765
+22:50,10:35,Azerbaijan Airlines,11848,1,765
+14:35,10:35,Azerbaijan Airlines,11848,1,1260
+12:00,10:35,Azerbaijan Airlines,11848,1,1415
+04:35,19:45,Aegean Airlines,11891,1,970
+21:20,09:05,Norwegian Air Shuttle,12063,1,765
+15:40,07:40,Air Baltic,12331,1,1020
+04:20,17:15,Air France,13304,1,835
+07:00,10:35,LOT Polish Airlines,13759,1,275
+17:30,21:50,LOT Polish Airlines,13759,1,320
+13:55,18:20,LOT Polish Airlines,13759,1,325
+04:20,17:15,Air France,13922,1,835
+21:20,20:20,Norwegian Air Shuttle,14049,1,1440
+18:55,14:45,Egyptair,14232,1,1250
+14:00,14:45,Egyptair,14232,1,1545
+04:30,14:45,Egyptair,14270,1,675
+15:50,10:35,Aegean Airlines,14373,1,1185
+20:50,19:45,Aegean Airlines,14373,1,1435
+15:40,07:40,Air Baltic,14574,1,1020
+15:40,19:00,Air Baltic,14605,1,1700
+21:20,13:30,Norwegian Air Shuttle,14753,1,1030
+14:00,18:25,Lufthansa,14875,1,325
+06:10,10:55,Lufthansa,14875,1,345
+14:00,18:55,Lufthansa,14875,1,355
+06:10,12:55,Lufthansa,14875,1,465
+14:00,20:55,Lufthansa,14875,1,475
+14:00,21:25,Lufthansa,14875,1,505
+06:10,13:55,Lufthansa,14875,1,525
+06:10,15:55,Lufthansa,14875,1,645
+06:10,16:55,Lufthansa,14875,1,705
+06:10,17:55,Lufthansa,14875,1,765
+06:10,18:25,Lufthansa,14875,1,795
+17:55,07:25,Lufthansa,15202,1,870
+17:55,07:55,Lufthansa,15202,1,900
+17:55,08:55,Lufthansa,15202,1,960
+15:50,10:35,Aegean Airlines,15400,1,1185
+20:50,19:45,Aegean Airlines,15400,1,1435
+17:55,09:25,Lufthansa,16065,1,990
+17:55,09:55,Lufthansa,16065,1,1020
+14:00,07:25,Lufthansa,16065,1,1105
+14:00,07:55,Lufthansa,16065,1,1135
+14:00,08:55,Lufthansa,16065,1,1195
+14:00,09:25,Lufthansa,16065,1,1225
+14:00,09:55,Lufthansa,16065,1,1255
+17:55,13:55,Lufthansa,16065,1,1260
+17:55,15:55,Lufthansa,16065,1,1380
+17:55,16:55,Lufthansa,16065,1,1440
+14:00,13:55,Lufthansa,16065,1,1495
+17:55,17:55,Lufthansa,16065,1,1500
+17:55,18:25,Lufthansa,16065,1,1530
+06:10,07:25,Lufthansa,16065,1,1575
+06:10,07:55,Lufthansa,16065,1,1605
+06:10,08:55,Lufthansa,16065,1,1665
+01:40,10:35,Aegean Airlines,16886,1,595
+07:25,19:45,Aegean Airlines,16886,1,800
+10:40,19:45,Aegean Airlines,17079,1,605
+15:40,07:40,Air Baltic,17607,1,1020
+17:55,12:55,Lufthansa,18429,1,1200
+14:00,12:55,Lufthansa,18429,1,1435
+18:55,19:45,Aegean Airlines,18696,1,1550
+17:05,08:25,KLM Royal Dutch Airlines,19332,1,980
+04:20,19:20,Air France,19599,1,960
+14:00,19:55,Lufthansa,20212,1,415
+19:00,07:50,Aegean Airlines,20871,1,830
+06:55,14:45,Egyptair,21307,1,530
+21:45,10:35,Azerbaijan Airlines,21942,1,830
+17:05,08:25,KLM Royal Dutch Airlines,23535,1,980
+18:45,08:40,Air Serbia,24260,1,895
+18:20,13:05,Iberia,24736,1,1185
+18:20,13:05,Vueling Airlines,24774,1,1185
+02:00,14:45,Egyptair,27648,1,825
+17:05,22:10,KLM Royal Dutch Airlines,28617,1,365
+04:30,14:45,Egyptair,30076,1,675
+06:55,14:45,Egyptair,31043,1,530
+08:25,18:55,British Airways,35204,1,690
+02:00,14:45,Egyptair,37417,1,825
+06:45,15:10,Royal Jordanian,37995,1,565
+08:25,20:10,British Airways,40811,1,765
+17:55,07:55,Lufthansa,43484,1,900
+08:25,16:15,Condor,47268,1,530
+17:35,10:00,British Airways,47345,1,1045
+04:20,11:20,British Airways,48661,1,480
+04:30,14:45,Air France,48899,1,675
+08:50,16:40,Egyptair,52753,1,530
+06:55,14:45,KLM Royal Dutch Airlines,53047,1,530
+02:00,14:45,Egyptair,53047,1,825
+17:35,19:10,Egyptair,54558,1,1595
+16:15,22:40,British Airways,58995,1,445
+17:35,11:40,British Airways,59908,1,1145

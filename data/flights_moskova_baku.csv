@@ -1,0 +1,61 @@
+DepartureTime,ArrivalTime,AirlineName,Price,ConnectionInfo,Duration
+00:40,05:00,Azerbaijan Airlines,11741,0,200
+00:40,05:00,Azerbaijan Airlines,11741,0,200
+01:00,05:25,Azerbaijan Airlines,12743,0,205
+01:00,05:25,Azerbaijan Airlines,12743,0,205
+12:50,17:15,Azerbaijan Airlines,13825,0,205
+12:50,17:15,Azerbaijan Airlines,13825,0,205
+12:10,16:30,Azerbaijan Airlines,15422,0,200
+12:10,16:30,Azerbaijan Airlines,15422,0,200
+15:05,17:15,AJet,15912,1,1510
+15:05,04:05,AJet,17514,1,720
+15:05,03:05,Pegasus,22942,1,660
+02:45,16:35,AJet,23211,1,770
+02:45,04:05,AJet,23211,1,1460
+19:25,05:15,Türk Hava Yolları,24924,1,530
+19:25,10:40,Türk Hava Yolları,24924,1,855
+19:25,15:55,Türk Hava Yolları,24924,1,1170
+19:25,19:50,Türk Hava Yolları,24924,1,1405
+19:25,01:35,Türk Hava Yolları,24924,1,1750
+05:00,15:45,AJet,25766,1,585
+05:15,17:00,Flydubai,26373,1,645
+02:00,17:00,Flydubai,26373,1,840
+01:05,17:00,Flydubai,26373,1,895
+05:15,21:20,Flydubai,26373,1,905
+16:30,11:05,Flydubai,26373,1,1055
+02:00,21:20,Flydubai,26373,1,1100
+01:05,21:20,Flydubai,26373,1,1155
+16:30,17:00,Flydubai,26373,1,1410
+16:30,21:20,Flydubai,26373,1,1670
+05:15,11:05,Flydubai,26373,1,1730
+02:00,11:05,Flydubai,26373,1,1925
+05:15,17:00,Flydubai,29271,1,645
+16:30,11:05,Flydubai,29271,1,1055
+06:25,15:55,Türk Hava Yolları,30027,1,510
+00:35,10:40,Türk Hava Yolları,30027,1,545
+06:25,19:50,Türk Hava Yolları,30027,1,745
+00:35,15:55,Türk Hava Yolları,30027,1,860
+06:25,01:35,Türk Hava Yolları,30027,1,1090
+00:35,19:50,Türk Hava Yolları,30027,1,1095
+06:25,05:15,Türk Hava Yolları,30027,1,1310
+00:35,01:35,Türk Hava Yolları,30027,1,1440
+06:25,10:40,Türk Hava Yolları,30027,1,1635
+00:35,05:15,Türk Hava Yolları,30027,1,1660
+08:50,14:35,Gulf Air,33342,1,1725
+12:30,01:35,Türk Hava Yolları,34783,1,725
+12:30,05:15,Türk Hava Yolları,34783,1,945
+12:30,10:40,Türk Hava Yolları,34783,1,1270
+12:30,15:55,Türk Hava Yolları,34783,1,1585
+12:30,19:50,Türk Hava Yolları,34783,1,1820
+02:40,15:55,Türk Hava Yolları,39972,1,735
+02:40,19:50,Türk Hava Yolları,39972,1,970
+02:40,01:35,Türk Hava Yolları,39972,1,1315
+02:40,05:15,Türk Hava Yolları,39972,1,1535
+23:10,16:10,Emirates,52392,1,960
+16:50,16:10,Azerbaijan Airlines,52392,1,1340
+08:15,16:10,Emirates,52392,1,1855
+14:30,01:35,Azerbaijan Airlines,66780,1,605
+14:30,05:15,Emirates,66780,1,825
+14:30,10:40,Azerbaijan Airlines,66780,1,1150
+14:30,15:55,Türk Hava Yolları,66780,1,1465
+14:30,19:50,Türk Hava Yolları,66780,1,1700

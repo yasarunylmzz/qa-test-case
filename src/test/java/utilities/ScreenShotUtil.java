@@ -15,7 +15,7 @@ public class ScreenShotUtil {
         File srcFile = ts.getScreenshotAs(OutputType.FILE);
         String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         String fileName = scenarioName.replaceAll(" ", "_") + "_" + timestamp + ".png";
-        File destFile = new File("target/screenshots/" + fileName);
+        File destFile = new File("data/screenshots" + fileName);
 
         try {
             FileUtils.copyFile(srcFile, destFile);
