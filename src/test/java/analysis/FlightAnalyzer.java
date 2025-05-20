@@ -14,10 +14,12 @@ public class FlightAnalyzer {
     public static void flightGraphs(String fromCity, String toCity) {
         Map<String, List<Integer>> pricesAirlines = new HashMap<>();
 
-        String csvFilePath = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/flights_"+fromCity+"_"+toCity+".csv";
+        String csvFilePath = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/flights_" + fromCity + "_" + toCity + ".csv";
+        String outputCsvPath = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/data/graph/flight_"+fromCity+"+"+toCity+"_output.csv";
 
+        try (Scanner scanner = new Scanner(new FileReader(csvFilePath));
+             PrintWriter writer = new PrintWriter(new FileWriter(outputCsvPath))) {
 
-        try (Scanner scanner = new Scanner(new FileReader(csvFilePath))) {
             scanner.nextLine();
 
             while (scanner.hasNextLine()) {
@@ -28,29 +30,38 @@ public class FlightAnalyzer {
                 pricesAirlines.computeIfAbsent(airline, k -> new ArrayList<>()).add(price);
             }
 
-            System.out.println("Airlines  Max Price  Min Price  Avg Price");
-            System.out.println("-----------------------------------------");
+            writer.println("Airline,Max Price,Min Price,Avg Price");
 
             for (Map.Entry<String, List<Integer>> entry : pricesAirlines.entrySet()) {
                 String airline = entry.getKey();
                 List<Integer> prices = entry.getValue();
-                int sum = prices.stream().mapToInt(Integer::intValue).sum();
-                System.out.printf("%s  %d  %d  %d%n", airline,
-                        Collections.max(prices),
-                        Collections.min(prices),
-                        sum / prices.size());
+                int max = Collections.max(prices);
+                int min = Collections.min(prices);
+                int avg = prices.stream().mapToInt(Integer::intValue).sum() / prices.size();
+
+
+
+                writer.printf("%s,%d,%d,%d%n", airline, max, min, avg);
             }
+
+            logger.info("csv file created: " + outputCsvPath);
+
         } catch (Exception e) {
-            logger.error("Error reading CSV file: " + e.getMessage());
+            e.printStackTrace();
         }
     }
+
 
     public static void paretoOptimal(String fromCity, String toCity) {
         List<Flight> flights = new ArrayList<>();
 
-        String csvFilePath = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/flights_"+fromCity+"_"+toCity+".csv";
+        String csvFilePath = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/flights_" + fromCity + "_" + toCity + ".csv";
+        String csvOutputPath = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/data/pareto/pareto_" + fromCity + "_" + toCity + ".csv";
 
-        try (Scanner scanner = new Scanner(new FileReader(csvFilePath))) {
+        try (
+                Scanner scanner = new Scanner(new FileReader(csvFilePath));
+                PrintWriter writer = new PrintWriter(new FileWriter(csvOutputPath))
+        ) {
             scanner.nextLine(); // Skip header
 
             while (scanner.hasNextLine()) {
@@ -77,23 +88,31 @@ public class FlightAnalyzer {
                 }
             }
 
-            System.out.println("\nPareto Optimal Flights:");
+            writer.println("Airline,Price,Duration,Transfers");
+
             for (Flight flight : paretoOptimal) {
-                System.out.printf("%s | %d TL | %d dk | %d aktarma%n",
+                writer.printf("%s,%d,%d,%d%n",
                         flight.airline, flight.price, flight.duration, flight.transfers);
             }
 
+
+            logger.info("CSV file created: " + csvOutputPath);
+
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.warn(e.getMessage());
         }
     }
+
 
     public static void paretoOptimalPenalty(String fromCity, String toCity) {
     List<Flight> flights = new ArrayList<>();
 
     String csvFilePath = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/flights_" + fromCity + "_" + toCity + ".csv";
+    String csvOutputPath = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/data/pareto/pareto_" + fromCity + "_" + toCity + ".csv";
 
-    try (Scanner scanner = new Scanner(new FileReader(csvFilePath))) {
+        try (Scanner scanner = new Scanner(new FileReader(csvFilePath));
+             PrintWriter writer = new PrintWriter(new FileWriter(csvOutputPath))
+        ) {
         scanner.nextLine();
 
         while (scanner.hasNextLine()) {
@@ -105,6 +124,7 @@ public class FlightAnalyzer {
 
             flights.add(new Flight(airline, price, duration, transfers));
         }
+        writer.println("Airline,Price,Duration,Transfers");
 
         int minScore = Integer.MAX_VALUE;
         List<Flight> bestFlights = new ArrayList<>();
@@ -121,11 +141,11 @@ public class FlightAnalyzer {
             }
         }
 
-        System.out.println("\nCeza Sistemine Göre En İyi Uçuş(lar):");
+
         for (Flight flight : bestFlights) {
             int score = flight.price + (flight.transfers * 1000) + (flight.duration * 10);
-            System.out.printf("%s | %d TL | %d dk | %d aktarma | Ceza: %d%n",
-                    flight.airline, flight.price, flight.duration, flight.transfers, score);
+            writer.printf("%s,%d,%d,%d%n",
+                    flight.airline, flight.price, flight.duration, flight.transfers);
         }
 
     } catch (Exception e) {

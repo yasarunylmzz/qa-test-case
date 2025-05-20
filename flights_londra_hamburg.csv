@@ -1,34 +1,33 @@
 DepartureTime,ArrivalTime,AirlineName,Price,ConnectionInfo,Duration
-09:50,12:30,easyJet,4456,0,100
-08:45,11:20,Eurowings,5000,0,95
-09:50,12:30,easyJet,6470,0,100
-09:10,16:55,Eurowings,6629,1,405
-09:10,18:10,Eurowings,6629,1,480
-08:45,11:20,Eurowings,7216,0,95
-14:35,19:55,Eurowings,8252,1,260
-14:35,21:55,Eurowings,8252,1,380
-08:05,15:50,Eurowings,8252,1,405
-09:10,16:55,Eurowings,8880,1,405
-09:10,18:10,Eurowings,8880,1,480
+09:50,12:30,easyJet,4460,0,100
+08:45,11:20,Eurowings,5005,0,95
+09:50,12:30,easyJet,6476,0,100
+09:10,16:55,Eurowings,6635,1,405
+09:10,18:10,Eurowings,6635,1,480
+08:45,11:20,Eurowings,7223,0,95
+14:35,19:55,Eurowings,8260,1,260
+14:35,21:55,Eurowings,8260,1,380
+08:05,15:50,Eurowings,8260,1,405
+09:10,16:55,Eurowings,8888,1,405
+09:10,18:10,Eurowings,8888,1,480
 08:45,11:20,Eurowings,8904,0,95
-20:50,14:05,Norwegian Air Shuttle,9782,1,975
-14:50,17:25,Eurowings,10491,0,95
-14:35,19:55,Eurowings,10543,1,260
-14:35,21:55,Eurowings,10543,1,380
-08:05,15:50,Eurowings,10543,1,405
+20:50,14:05,Norwegian Air Shuttle,9791,1,975
+14:50,17:25,Eurowings,10500,0,95
+14:35,19:55,Eurowings,10553,1,260
+14:35,21:55,Eurowings,10553,1,380
+08:05,15:50,Eurowings,10553,1,405
 06:40,11:40,Scandinavian Airlines,10752,1,240
-15:05,14:05,Norwegian Air Shuttle,11366,1,1320
-14:50,17:25,Eurowings,12642,0,95
-08:45,11:20,Eurowings,13114,0,95
+15:05,14:05,Norwegian Air Shuttle,11377,1,1320
+14:50,17:25,Eurowings,12653,0,95
+08:45,11:20,Eurowings,13126,0,95
 07:25,12:30,Lufthansa,13297,1,245
 09:00,14:30,Lufthansa,13297,1,270
 10:50,16:30,Lufthansa,13297,1,280
 13:45,19:30,Lufthansa,13297,1,285
-20:55,08:00,KLM Royal Dutch Airlines,13420,1,605
+20:55,08:00,KLM Royal Dutch Airlines,13422,1,605
 18:35,08:45,Swiss,13471,1,790
-16:25,22:30,Lufthansa,13504,1,305
-19:45,18:10,Air France,13571,1,1285
-12:10,18:25,Swiss,13622,1,315
+16:25,22:30,Lufthansa,13511,1,305
+19:45,18:10,Air France,13584,1,1285
 06:00,14:05,Swiss,13622,1,425
 20:05,08:45,Swiss,13622,1,700
 16:30,21:20,Lufthansa,13643,1,230
@@ -40,85 +39,86 @@ DepartureTime,ArrivalTime,AirlineName,Price,ConnectionInfo,Duration
 17:50,22:20,Brussels Airlines,13647,1,210
 06:00,14:10,Austrian,13678,1,430
 09:05,19:40,Austrian,13678,1,575
-20:25,08:00,Lufthansa,13853,1,635
+20:25,08:00,Lufthansa,13855,1,635
 08:45,14:05,Lufthansa,13965,1,260
 19:45,11:10,Air France,14090,1,865
 17:50,10:50,Brussels Airlines,14148,1,960
-14:35,19:55,Eurowings,14163,1,260
-14:35,21:55,Eurowings,14163,1,380
-08:05,15:50,Eurowings,14163,1,405
-09:10,16:55,Eurowings,14163,1,405
-09:10,18:10,Eurowings,14163,1,480
-19:30,07:35,Lufthansa,14186,1,665
+14:35,19:55,Eurowings,14176,1,260
+14:35,21:55,Eurowings,14176,1,380
+08:05,15:50,Eurowings,14176,1,405
+09:10,16:55,Eurowings,14176,1,405
+09:10,18:10,Eurowings,14176,1,480
+19:30,07:35,Lufthansa,14188,1,665
 06:15,11:10,Air France,14605,1,235
 15:20,11:10,Air France,14663,1,1130
 12:00,16:55,Luxair,14718,1,235
-08:45,07:35,Lufthansa,15195,1,1310
-10:50,17:30,Lufthansa,16199,1,340
-12:10,17:20,Swiss,16292,1,250
+08:45,07:35,Lufthansa,15209,1,1310
+10:50,17:30,Lufthansa,16211,1,340
+12:10,18:25,Swiss,16292,1,315
 20:05,10:30,Swiss,16292,1,805
 09:05,17:10,Austrian,16349,1,425
-14:50,17:25,Eurowings,16451,0,95
+14:50,17:25,Eurowings,16466,0,95
 09:25,18:25,Swiss,16614,1,480
 17:00,22:20,Lufthansa,16635,1,260
 19:10,07:35,Lufthansa,16962,1,685
-11:30,18:05,Lufthansa,17045,1,335
-19:45,14:20,Air France,17261,1,1055
+11:30,18:05,Lufthansa,17047,1,335
+19:45,14:20,Air France,17263,1,1055
 14:20,12:55,Aer Lingus,18315,1,1295
-19:10,11:05,Lufthansa,18427,1,895
-17:00,09:05,Lufthansa,18427,1,905
+19:10,11:05,Lufthansa,18429,1,895
+17:00,09:05,Lufthansa,18429,1,905
 15:10,12:55,Aer Lingus,18779,1,1245
 15:50,12:55,Aer Lingus,19191,1,1205
+12:10,17:20,Swiss,19389,1,250
 13:30,19:05,Lufthansa,19409,1,275
 19:30,08:50,Austrian,19444,1,740
 10:20,14:55,Scandinavian Airlines,19492,1,215
 19:30,22:25,Scandinavian Airlines,19492,1,1555
-14:35,21:55,Eurowings,19635,1,380
-09:10,16:55,Eurowings,19635,1,405
+14:35,21:55,Eurowings,19638,1,380
+09:10,16:55,Eurowings,19638,1,405
 11:05,13:45,British Airways,19696,0,100
 15:10,12:55,British Airways,19835,1,1245
-06:15,22:00,Aer Lingus,20281,1,885
-15:20,14:20,Air France,20333,1,1320
+06:15,22:00,Aer Lingus,20283,1,885
+15:20,14:20,Air France,20335,1,1320
 15:50,12:55,Air France,21002,1,1205
-19:10,16:05,British Airways,21296,1,1195
+19:10,16:05,British Airways,21316,1,1195
 08:50,12:55,Aer Lingus,21698,1,1625
-19:25,22:00,Lufthansa,21936,0,95
-14:35,19:55,Aer Lingus,21947,1,260
-09:10,18:10,Eurowings,21947,1,480
-19:25,22:00,Eurowings,22461,0,95
+14:35,19:55,Lufthansa,21950,1,260
+09:10,18:10,Aer Lingus,21950,1,480
+19:25,22:00,Eurowings,21957,0,95
+19:25,22:00,Eurowings,22482,0,95
 19:30,11:40,Eurowings,22515,1,910
 16:25,22:20,Eurowings,23014,1,295
 09:25,17:20,Scandinavian Airlines,23661,1,415
-08:05,15:50,Lufthansa,24303,1,405
+08:05,15:50,Lufthansa,24305,1,405
 08:45,11:20,Swiss,24822,0,95
 14:50,17:25,Eurowings,24822,0,95
-06:30,11:30,Lufthansa,25270,1,240
-08:40,14:05,Lufthansa,25270,1,265
-17:10,08:00,KLM Royal Dutch Airlines,25270,1,830
+06:30,11:30,Lufthansa,25274,1,240
+08:40,14:05,Lufthansa,25274,1,265
+17:10,08:00,KLM Royal Dutch Airlines,25274,1,830
 19:30,09:15,KLM Royal Dutch Airlines,25349,1,765
 15:20,22:00,KLM Royal Dutch Airlines,25495,1,340
 06:15,14:20,Scandinavian Airlines,25495,1,425
 17:35,11:10,Air France,25553,1,995
-19:10,17:05,Air France,25579,1,1255
-20:55,17:50,Air France,25713,1,1195
-11:30,14:20,Lufthansa,25873,1,1550
+19:10,17:05,Air France,25582,1,1255
+20:55,17:50,Air France,25715,1,1195
+11:30,14:20,Lufthansa,25876,1,1550
 07:05,09:40,KLM Royal Dutch Airlines,26532,0,95
 20:00,22:40,Air France,26532,0,100
-12:10,19:45,British Airways,27182,1,395
+12:10,19:45,British Airways,27207,1,395
 15:05,22:15,British Airways,28032,1,370
 20:30,12:55,Eurowings,28139,1,925
 13:40,12:55,Austrian,29067,1,1335
-19:15,08:00,British Airways,30571,1,705
-09:20,14:05,Aer Lingus,30893,1,225
-07:45,08:00,British Airways,30893,1,1395
+19:15,08:00,British Airways,30575,1,705
+09:20,14:05,Aer Lingus,30898,1,225
+07:45,08:00,British Airways,30898,1,1395
 18:35,14:50,Aer Lingus,33531,1,1155
-11:05,13:45,KLM Royal Dutch Airlines,34728,0,100
-06:15,12:55,KLM Royal Dutch Airlines,35656,1,340
+11:05,13:45,KLM Royal Dutch Airlines,35021,0,100
+06:15,12:55,KLM Royal Dutch Airlines,35659,1,340
 14:45,08:00,KLM Royal Dutch Airlines,37622,1,975
 19:25,22:00,Luxair,37898,0,95
 15:05,21:25,British Airways,41108,1,320
-10:50,17:50,Aer Lingus,41611,1,360
-20:55,08:00,KLM Royal Dutch Airlines,51119,1,605
-09:00,14:20,Lufthansa,55509,1,260
-06:50,10:50,Austrian,59116,1,180
-17:50,22:20,Lufthansa,59116,1,210
+10:50,17:50,Aer Lingus,41615,1,360
+20:55,08:00,KLM Royal Dutch Airlines,51168,1,605
+09:00,14:20,Lufthansa,55515,1,260
+06:50,10:50,Austrian,59124,1,180
+17:50,22:20,Lufthansa,59124,1,210

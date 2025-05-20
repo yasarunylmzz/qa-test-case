@@ -103,7 +103,7 @@ public class CSVPage {
         String lowerCaseToCity = toCity.toLowerCase();
 
         FlightAnalyzer.flightGraphs(lowerCaseFromCity, lowerCaseToCity);
-        FlightAnalyzer.paretoOptimal(lowerCaseFromCity, lowerCaseToCity);
+        FlightAnalyzer.paretoOptimalPenalty(lowerCaseFromCity, lowerCaseToCity);
     }
 
     public int parseConnectionInfo(String connectionInfo) {

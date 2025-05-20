@@ -25,30 +25,30 @@ DepartureTime,ArrivalTime,AirlineName,Price,ConnectionInfo,Duration
 15:05,03:05,Pegasus,22942,1,660
 02:45,16:35,AJet,23211,1,770
 02:45,04:05,AJet,23211,1,1460
-17:45,20:25,Ural Airlines,23604,1,1540
 22:00,20:25,Ural Airlines,23941,1,1285
 19:25,05:15,Türk Hava Yolları,24924,1,530
 19:25,10:40,Türk Hava Yolları,24924,1,855
 19:25,15:55,Türk Hava Yolları,24924,1,1170
 19:25,19:50,Türk Hava Yolları,24924,1,1405
 19:25,01:35,Türk Hava Yolları,24924,1,1750
+17:45,20:25,Ural Airlines,25267,1,1540
 20:35,20:25,Ural Airlines,25497,1,1370
 05:00,15:45,AJet,25766,1,585
-05:15,17:00,Flydubai,26370,1,645
-02:00,17:00,Flydubai,26370,1,840
-01:05,17:00,Flydubai,26370,1,895
-05:15,21:20,Flydubai,26370,1,905
-16:30,11:05,Flydubai,26370,1,1055
-02:00,21:20,Flydubai,26370,1,1100
-01:05,21:20,Flydubai,26370,1,1155
-16:30,17:00,Flydubai,26370,1,1410
-16:30,21:20,Flydubai,26370,1,1670
-05:15,11:05,Flydubai,26370,1,1730
-02:00,11:05,Flydubai,26370,1,1925
+05:15,17:00,Flydubai,26373,1,645
+02:00,17:00,Flydubai,26373,1,840
+01:05,17:00,Flydubai,26373,1,895
+05:15,21:20,Flydubai,26373,1,905
+16:30,11:05,Flydubai,26373,1,1055
+02:00,21:20,Flydubai,26373,1,1100
+01:05,21:20,Flydubai,26373,1,1155
+16:30,17:00,Flydubai,26373,1,1410
+16:30,21:20,Flydubai,26373,1,1670
+05:15,11:05,Flydubai,26373,1,1730
+02:00,11:05,Flydubai,26373,1,1925
 14:45,19:05,Aeroflot,26639,0,200
-17:45,20:25,Ural Airlines,26973,1,1540
-05:15,17:00,Flydubai,29267,1,645
-16:30,11:05,Flydubai,29267,1,1055
+17:45,20:25,Ural Airlines,28585,1,1540
+05:15,17:00,Flydubai,29271,1,645
+16:30,11:05,Flydubai,29271,1,1055
 06:25,15:55,Türk Hava Yolları,30027,1,510
 00:35,10:40,Türk Hava Yolları,30027,1,545
 06:25,19:50,Türk Hava Yolları,30027,1,745
@@ -65,7 +65,6 @@ DepartureTime,ArrivalTime,AirlineName,Price,ConnectionInfo,Duration
 12:30,10:40,Türk Hava Yolları,34783,1,1270
 12:30,15:55,Türk Hava Yolları,34783,1,1585
 12:30,19:50,Türk Hava Yolları,34783,1,1820
-00:35,10:40,Türk Hava Yolları,36576,1,545
 02:40,15:55,Türk Hava Yolları,39972,1,735
 02:40,19:50,Türk Hava Yolları,39972,1,970
 02:40,01:35,Türk Hava Yolları,39972,1,1315
