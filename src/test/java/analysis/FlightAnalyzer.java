@@ -14,8 +14,8 @@ public class FlightAnalyzer {
     public static void flightGraphs(String fromCity, String toCity) {
         Map<String, List<Integer>> pricesAirlines = new HashMap<>();
 
-        String csvFilePath = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/data/flights_" + fromCity + "_" + toCity + ".csv";
-        String outputCsvPath = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/data/graph/flight_"+fromCity+"+"+toCity+"_output.csv";
+        String csvFilePath = "/data/flights_" + fromCity + "_" + toCity + ".csv";
+        String outputCsvPath = "/data/graph/flight_"+fromCity+"+"+toCity+"_output.csv";
 
         try (Scanner scanner = new Scanner(new FileReader(csvFilePath));
              PrintWriter writer = new PrintWriter(new FileWriter(outputCsvPath))) {
@@ -55,8 +55,8 @@ public class FlightAnalyzer {
     public static void paretoOptimal(String fromCity, String toCity) {
         List<Flight> flights = new ArrayList<>();
 
-        String csvFilePath = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/data/flights_" + fromCity + "_" + toCity + ".csv";
-        String csvOutputPath = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/data/pareto/pareto_" + fromCity + "_" + toCity + ".csv";
+        String csvFilePath = "/data/flights_" + fromCity + "_" + toCity + ".csv";
+        String csvOutputPath = "/data/pareto/pareto_" + fromCity + "_" + toCity + ".csv";
 
         try (
                 Scanner scanner = new Scanner(new FileReader(csvFilePath));
@@ -107,8 +107,8 @@ public class FlightAnalyzer {
     public static void paretoOptimalPenalty(String fromCity, String toCity) {
     List<Flight> flights = new ArrayList<>();
 
-    String csvFilePath = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/data/flights_" + fromCity + "_" + toCity + ".csv";
-    String csvOutputPath = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/data/pareto/pareto_" + fromCity + "_" + toCity + ".csv";
+    String csvFilePath = "/data/flights_" + fromCity + "_" + toCity + ".csv";
+    String csvOutputPath = "/data/pareto/pareto_" + fromCity + "_" + toCity + ".csv";
 
         try (Scanner scanner = new Scanner(new FileReader(csvFilePath));
              PrintWriter writer = new PrintWriter(new FileWriter(csvOutputPath))
