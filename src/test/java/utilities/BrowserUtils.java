@@ -15,13 +15,6 @@ public class BrowserUtils {
         return DriverManager.getWait().until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public static void click(By locator) {
-        waitForClickability(locator).click();
-    }
-    public static void sendKeys(By locator, String text) {
-        waitForClickability(locator).sendKeys(text);
-    }
-
     public static WebElement waitForPresence(By locator) {
         return DriverManager.getWait().until(ExpectedConditions.presenceOfElementLocated(locator));
     }

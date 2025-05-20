@@ -29,6 +29,11 @@ class Flight {
         return betterOrEqual && strictlyBetter;
     }
 
+    public int getPenaltyScore() {
+    return price + (transfers * 1000) + (duration * 10);
+}
+
+
 
 }
 

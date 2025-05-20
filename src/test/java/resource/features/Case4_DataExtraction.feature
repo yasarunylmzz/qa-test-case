@@ -13,5 +13,6 @@ Feature: Data Extraction
       | İstanbul | Lefkoşa | 2025-09-10    |
       | Londra | Hamburg | 2025-09-10     |
       | Moskova | Baku | 2025-09-10     |
+      | İstanbul | Berlin | 2025-05-24  |
 
 
