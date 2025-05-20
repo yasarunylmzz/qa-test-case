@@ -19,7 +19,7 @@ com.testcase/
 │       │   ├── runner/             # Test runner (TestRunner.java)
 │       │   ├── steps/              # Step definitions (Case1Steps, Case3Steps, Case4Steps)
 │       │   └── utilities/          # Utility classes (ConfigurationReader, DriverManager, etc.)
-│       └── resource/
+│       └── resources/
 │           ├── features/           # .feature files (Case4_DataExtraction.feature, etc.)
 │           └── config/             # Configuration file (properties)
 └── README.md
@@ -52,7 +52,7 @@ com.testcase/
 
 ## Configuration
 
-- Edit the configuration file at `src/test/java/resource/config/properties` to set browser and URL:
+- Edit the configuration file at `src/test/java/resources/config/properties` to set browser and URL:
   ```
   browser=chrome
   url=https://www.enuygun.com/
@@ -65,7 +65,7 @@ com.testcase/
 ### 1. **From IDE**
 
 - Right-click on `TestRunner.java`
-- Edit @CucumberOptions --> edit this "features = "/Users/yasarunyilmaz/IdeaProjects/com.testcase/src/test/java/resource/features/**_Case4_DataExtraction_**.feature"," and select "Run".
+- Edit @CucumberOptions --> edit this "features = "src/test/java/resources/features/**_Case4_DataExtraction_**.feature"," and select "Run".
 
 ### 2. **From Terminal**
 
@@ -77,7 +77,7 @@ mvn test
 
 ## Test Scenarios
 
-- All test scenarios are defined in `.feature` files under `src/test/java/resource/features/`.
+- All test scenarios are defined in `.feature` files under `src/test/java/resources/features/`.
 - Step definitions are implemented in the `steps/` directory.
 
 ---
