@@ -106,8 +106,10 @@ public class EndToEndHotelBookingSteps {
 
         if(child.isEmpty()){
             Assert.assertEquals(justAdultText,isValue);
-        }
+        }else{
         Assert.assertEquals(childAndAdultText,isValue);
+
+        }
 
     }
 
@@ -119,7 +121,7 @@ public class EndToEndHotelBookingSteps {
         Assert.assertTrue(cityIsCorrect.isDisplayed());
     }
 
-    public void hotelPricesAscendingOrder(){
+    public void hotelPricesAscendingOrder() {
         BrowserUtils.findElement(HotelPageLocators.SORT_FIYAT_ARTAN_BUTTON).click();
 
         List<WebElement> hotels = BrowserUtils.findElements(HotelPageLocators.RESULT_AVAILABLE_HOTEL);
